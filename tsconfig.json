@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "outDir": "node_modules",
+    "module": "esnext",
+    "target": "es5",
+    "sourceMap": true,
+    "allowJs": true,
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "rootDirs":["src","bin","config","mock","node_modules"],
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": false,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": true,
+    "locale": "zh-cn",
+    "lib":[
+      "dom",
+      "es2015",
+      "es2016",
+      "es2017"
+    ],
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "preserveConstEnums": true,
+    "skipLibCheck": true,
+    "experimentalDecorators":true,
+    "emitDecoratorMetadata":true
+  },
+  "compileOnSave": false,
+  "awesomeTypescriptLoaderOptions": {
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts"
+  ]
+}
