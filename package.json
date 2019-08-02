@@ -33,7 +33,8 @@
     "dist"
   ],
   "dependencies": {
-    "konva": "^3.4.1"
+    "konva": "^3.4.1",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "tslint-react": "^4.0.0",
