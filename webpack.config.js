@@ -4,6 +4,8 @@
  * @author:yanxinaliang
  * @time：2018/7/18 8:56
  */
+const path = require('path');
+
 module.exports=function(webpackConfig) {
     // 修改svg loader
     webpackConfig.module.rules.forEach((rule)=>{
@@ -11,6 +13,7 @@ module.exports=function(webpackConfig) {
             rule.test=/^(?!.*icon).*\.svg$/
         }
     });
+    webpackConfig.resolve.alias["@"]=path.resolve(__dirname, "src");
     
     //{test: /\.(png|jpg|jpeg|webp)$/i, loader: 'file' },
     

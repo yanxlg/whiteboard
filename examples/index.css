@@ -6,5 +6,9 @@
   * @time：2019/7/18 9:10
   */
 html{
-    font-size: 40px;
+    font-size: 16px;
+}
+
+#__react-content{
+    padding: 0!important;
 }

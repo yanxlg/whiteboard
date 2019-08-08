@@ -5,7 +5,9 @@
     "no-unused-variable": false,
     "forin": false,
     "no-console": false,
-    "object-literal-shorthand": false
+    "object-literal-shorthand": false,
+    "variable-name": ["allow-snake-case"],
+    "no-var-requires": false
   },
   "linterOptions": {
     "exclude": [

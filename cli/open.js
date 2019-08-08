@@ -7,4 +7,4 @@
  */
 var open = require("open");
 var port = require("../package.json").config.port;
-open(`http://localhost:${port}/examples/crop.html`);
+open(`http://localhost:${port}/examples/index.html`);
