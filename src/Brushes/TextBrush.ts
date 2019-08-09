@@ -18,6 +18,13 @@ import html2canvas from "html2canvas";
 
 const BalloonEditor = require("@ckeditor/ckeditor5-build-balloon-block");
 
+// @ts-ignore
+import FontSize from '@ckeditor/ckeditor5-font/src/fontsize';
+
+// @ts-ignore
+import FontColor from '@ckeditor/ckeditor5-font/src/fontcolor';
+
+
 
 
 class TextBrush implements IBrush{
@@ -137,7 +144,12 @@ class TextBrush implements IBrush{
             });
         }
         document.body.appendChild(div);
-        BalloonEditor.create(div).then((editor:any)=>{
+        BalloonEditor.create(div,{
+            blockToolbar:[],
+            extraPlugins: [FontColor,FontSize],
+            removePlugins:["Link","ImageUpload","ImageTextAlternative","ImageTextAlternative","BlockQuote","Ckfinder","Heading","ImageStyle:full","ImageStyle:side","List","MediaEmbed","Table"],
+            toolbar: ['bold', 'italic','fontColor',"fontSize"],
+        }).then((editor:any)=>{
             if(this.object!.image()){
                 this.object!.visible(false);
                 this.canvas.staticLayer.batchDraw();
