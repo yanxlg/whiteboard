@@ -39,31 +39,35 @@ abstract class AbsBrush<T extends Konva.Shape> implements IBrush{
     protected abstract getObject():T;
     protected attachEvents(){
         this.canvas.stage.on(this.config.mouseDownEvents,this.onMouseDown);
-        this.canvas.stage.on(this.config.mouseMoveEvents,this.onMouseMove);
+        this.canvas.stage.on(this.config.mouseMoveEvents,this.onLayerMouseMove);
         this.canvas.stage.on(this.config.mouseUpEvents,this.onMouseUp);
         this.canvas.stage.on(this.config.mouseOutEvents,this.onMouseOut);
     }
     
     protected detachEvents(){
         this.canvas.stage.off(this.config.mouseDownEvents,this.onMouseDown);
-        this.canvas.stage.off(this.config.mouseMoveEvents,this.onMouseMove);
+        this.canvas.stage.off(this.config.mouseMoveEvents,this.onLayerMouseMove);
         this.canvas.stage.off(this.config.mouseUpEvents,this.onMouseUp);
         this.canvas.stage.off(this.config.mouseOutEvents,this.onMouseOut);
     }
     
     @Bind
-    protected onMouseDown(){
+    protected onMouseDown(e:Konva.KonvaEventObject<MouseEvent>){
         this.start = this.canvas.stage.getPointerPosition();
     }
     @Bind
-    protected onMouseMove(){
+    protected onLayerMouseMove(e:Konva.KonvaEventObject<MouseEvent>){
         if(this.start){
             this.end = this.canvas.stage.getPointerPosition();
-            this.drawShape();
+            this.onMouseMove(e);
         }
     }
     @Bind
-    protected onMouseUp(){
+    protected onMouseMove(e:Konva.KonvaEventObject<MouseEvent>){
+        this.drawShape();
+    }
+    @Bind
+    protected onMouseUp(e:Konva.KonvaEventObject<MouseEvent>){
         // 将arrow移动到staticLayer上
         if(this.object){
             this.object.moveTo(this.canvas.staticLayer);
@@ -74,8 +78,8 @@ abstract class AbsBrush<T extends Konva.Shape> implements IBrush{
         this.object=undefined;
     }
     @Bind
-    protected onMouseOut(e:any){
-        this.onMouseUp();
+    protected onMouseOut(e:Konva.KonvaEventObject<MouseEvent>){
+        this.onMouseUp(e);
     }
     
     private drawShape(){

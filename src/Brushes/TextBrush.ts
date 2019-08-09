@@ -9,20 +9,19 @@ import {IBrush} from '@/Brushes/AbsBrush';
 import {Canvas} from '@/Canvas';
 import {Config} from '@/Config';
 import "@/less/ckeditor.less";
+import html2canvas from "html2canvas";
 import Konva from 'konva';
 import {Bind} from 'lodash-decorators';
 
-
-import html2canvas from "html2canvas";
-
-
-const BalloonEditor = require("@ckeditor/ckeditor5-build-balloon-block");
-
+// @ts-ignore
+import BalloonEditor from "@ckeditor/ckeditor5-build-balloon-block";
 // @ts-ignore
 import FontSize from '@ckeditor/ckeditor5-font/src/fontsize';
 
 // @ts-ignore
 import FontColor from '@ckeditor/ckeditor5-font/src/fontcolor';
+
+
 
 
 

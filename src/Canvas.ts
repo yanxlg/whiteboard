@@ -8,28 +8,37 @@
  *
  * free draw use native context to draw to enhancing User Experience.other shapes even if you use native context,you still need to call clear API then redraw,so ite is not necessary to use native context.
  */
-import {AbsBrush} from '@/Brushes/AbsBrush';
+import {IBrush} from '@/Brushes/AbsBrush';
+import {ArcBrush} from '@/Brushes/ArcBrush';
 import {ArrowBrush} from '@/Brushes/ArrowBrush';
 import {CircleBrush} from '@/Brushes/CircleBrush';
+import {EllipseBrush} from '@/Brushes/EllipseBrush';
 import {LineBrush} from '@/Brushes/LineBrush';
 import {RectBrush} from '@/Brushes/RectBrush';
-import {Config,IConfig} from '@/Config';
-import Konva from "konva";
-import {SquareBrush} from '@/Brushes/SquareBrush';
-import {EllipseBrush} from '@/Brushes/EllipseBrush';
-import {WedgeBrush} from '@/Brushes/WedgeBrush';
-import {StarBrush} from '@/Brushes/StarBrush';
-import {RingBrush} from '@/Brushes/RingBrush';
-import {ArcBrush} from '@/Brushes/ArcBrush';
 import {RegularPolygonBrush} from '@/Brushes/RegularPolygonBrush';
+import {RingBrush} from '@/Brushes/RingBrush';
+import {SquareBrush} from '@/Brushes/SquareBrush';
+import {StarBrush} from '@/Brushes/StarBrush';
 import {TextBrush} from '@/Brushes/TextBrush';
+import {WedgeBrush} from '@/Brushes/WedgeBrush';
+import {Config,IConfig} from '@/Config';
+import {ITool} from '@/Tools/AbsTool';
+import {TransFormTool} from '@/Tools/TransformTool';
+import Konva from "konva";
+
+
+
+// @ts-ignore
+Konva.hitOnDragEnabled = true;
+
 
 class Canvas {
     public readonly stage:Konva.Stage;
     public readonly staticLayer:Konva.Layer;
     public readonly brushLayer:Konva.Layer;
     private readonly config:Config;
-    private brush?:AbsBrush<Konva.Shape>;
+    private brush?:IBrush;
+    private tool?:ITool;
     constructor({container,width,height}:{container:string|HTMLDivElement;width:number;height:number},config:Config) {
         this.config=config;
         this.stage=new Konva.Stage({
@@ -46,6 +55,8 @@ class Canvas {
         
         
         this.updateBrush();
+        
+        this.updateTool();
         
         
         
@@ -191,9 +202,20 @@ class Canvas {
                 break;
         }
     }
+    private updateTool(){
+        const {tool} = this.config;
+        this.tool&&this.tool.destroy();
+        switch (tool) {
+            case 'transform':
+                this.tool=new TransFormTool(this,this.config);
+               break;
+            default:
+                break;
+        }
+    }
     private onConfigUpdate(prevConfig:IConfig,nextConfig:IConfig){
         (prevConfig.brush!==nextConfig.brush)&&this.updateBrush();
-        
+        (prevConfig.tool!==nextConfig.tool)&&this.updateTool();
         
         
         

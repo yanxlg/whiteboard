@@ -13,7 +13,11 @@ class Config{
     public fill?:string;
     public stroke?:string;
     public strokeWidth:number;
-    public brush?:"pencil"|"arrow"|"line"|"circle"|"rect"|"square"|"ellipse"|"wedge"|"star"|"ring"|"arc"|"polygon"|"text"="text";
+    public selectionColor:string;
+    public selectionBorderColor:string;
+    public selectionBorderWidth:number;
+    public brush?:"pencil"|"arrow"|"line"|"circle"|"rect"|"square"|"ellipse"|"wedge"|"star"|"ring"|"arc"|"polygon"|"text";
+    public tool?:"transform"="transform";
     public mouseDownEvents="mousedown touchstart pointerdown";
     public mouseMoveEvents="mousemove touchmove pointermove";
     public mouseUpEvents="mouseup touchend pointerup";
@@ -23,6 +27,9 @@ class Config{
         this.fill=undefined;
         this.stroke="black";
         this.strokeWidth=1;
+        this.selectionColor="rgba(100, 100, 255, 0.3)";
+        this.selectionBorderColor="rgba(255, 255, 255, 0.3)";
+        this.selectionBorderWidth=1;
     }
     public update(config:IConfig,callback?:()=>void){
         const prevConfig = JSON.parse(JSON.stringify(this));
