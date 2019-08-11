@@ -39,7 +39,6 @@ module.exports=function(webpackConfig) {
         use: { loader: 'file-loader',options: { name: 'examples/[hash].pdf',publicPath:"../"}}
     });
     webpackConfig.module.rules.splice(-9,1);
-    console.log(webpackConfig.module.rules);
     webpackConfig.module.rules.unshift({
          test: /\S*.svg$/,
          use: { loader: 'raw-loader'},
