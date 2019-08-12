@@ -57,13 +57,13 @@ abstract class AbsTool<T extends Konva.Shape> implements ITool{
     protected onMouseOut(e:Konva.KonvaEventObject<MouseEvent>){
         this.onMouseUp(e);
     }
-    private attachEvents(){
+    protected attachEvents(){
         this.canvas.stage.on(this.config.mouseDownEvents,this.onMouseDown);
         this.canvas.stage.on(this.config.mouseMoveEvents,this.onLayerMouseMove);
         this.canvas.stage.on(this.config.mouseUpEvents,this.onMouseUp);
         this.canvas.stage.on(this.config.mouseOutEvents,this.onMouseOut);
     }
-    private detachEvents(){
+    protected detachEvents(){
         this.canvas.stage.off(this.config.mouseDownEvents,this.onMouseDown);
         this.canvas.stage.off(this.config.mouseMoveEvents,this.onLayerMouseMove);
         this.canvas.stage.off(this.config.mouseUpEvents,this.onMouseUp);

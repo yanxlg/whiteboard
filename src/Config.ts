@@ -16,6 +16,10 @@ class Config{
     public selectionColor:string;
     public selectionBorderColor:string;
     public selectionBorderWidth:number;
+    public transformerBorderStroke:string;
+    public transformerBorderWidth:number;
+    public transformerAnchorStroke:string;
+    public transformerAnchorWidth:number;
     public brush?:"pencil"|"arrow"|"line"|"circle"|"rect"|"square"|"ellipse"|"wedge"|"star"|"ring"|"arc"|"polygon"|"text";
     public tool?:"transform"="transform";
     public mouseDownEvents="mousedown touchstart pointerdown";
@@ -30,6 +34,8 @@ class Config{
         this.selectionColor="rgba(100, 100, 255, 0.3)";
         this.selectionBorderColor="rgba(255, 255, 255, 0.3)";
         this.selectionBorderWidth=1;
+        this.transformerBorderStroke=this.transformerAnchorStroke="#09ca51";
+        this.transformerBorderWidth=this.transformerAnchorWidth=1;
     }
     public update(config:IConfig,callback?:()=>void){
         const prevConfig = JSON.parse(JSON.stringify(this));

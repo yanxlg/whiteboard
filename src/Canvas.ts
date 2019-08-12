@@ -31,7 +31,6 @@ import Konva from "konva";
 // @ts-ignore
 Konva.hitOnDragEnabled = true;
 
-
 class Canvas {
     public readonly stage:Konva.Stage;
     public readonly staticLayer:Konva.Layer;
