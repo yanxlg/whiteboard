@@ -25,6 +25,7 @@ import {Config,IConfig} from '@/Config';
 import {ITool} from '@/Tools/AbsTool';
 import {TransFormTool} from '@/Tools/TransformTool';
 import Konva from "konva";
+import {PencilBrush} from '@/Brushes/PencilBrush';
 
 
 
@@ -196,6 +197,7 @@ class Canvas {
                 this.brush=new TextBrush(this,this.config);
                 break;
             case 'pencil':
+                this.brush=new PencilBrush(this,this.config);
                 break;
             default:
                 break;

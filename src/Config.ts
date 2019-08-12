@@ -11,7 +11,7 @@ export type IConfig = {[K in keyof Config]:Config[K]};
 
 class Config{
     public fill?:string;
-    public stroke?:string;
+    public stroke:string;
     public strokeWidth:number;
     public selectionColor:string;
     public selectionBorderColor:string;
@@ -20,8 +20,8 @@ class Config{
     public transformerBorderWidth:number;
     public transformerAnchorStroke:string;
     public transformerAnchorWidth:number;
-    public brush?:"pencil"|"arrow"|"line"|"circle"|"rect"|"square"|"ellipse"|"wedge"|"star"|"ring"|"arc"|"polygon"|"text";
-    public tool?:"transform"="transform";
+    public brush?:"pencil"|"arrow"|"line"|"circle"|"rect"|"square"|"ellipse"|"wedge"|"star"|"ring"|"arc"|"polygon"|"text"|"pencil"="pencil";
+    public tool?:"transform";
     public mouseDownEvents="mousedown touchstart pointerdown";
     public mouseMoveEvents="mousemove touchmove pointermove";
     public mouseUpEvents="mouseup touchend pointerup";
@@ -29,8 +29,8 @@ class Config{
     private updateListenerWeakSet:Set<(prevConfig:IConfig,nextConfig:IConfig)=>void>=new Set<(prevConfig:IConfig,nextConfig:IConfig)=> void>();
     constructor(){
         this.fill=undefined;
-        this.stroke="black";
-        this.strokeWidth=1;
+        this.stroke="red";
+        this.strokeWidth=8;
         this.selectionColor="rgba(100, 100, 255, 0.3)";
         this.selectionBorderColor="rgba(255, 255, 255, 0.3)";
         this.selectionBorderWidth=1;
