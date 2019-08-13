@@ -35,9 +35,9 @@ Konva.hitOnDragEnabled = true;
 
 class Canvas {
     public readonly stage:Konva.Stage;
+    public readonly backgroundLayer:Konva.FastLayer;
     public readonly staticLayer:Konva.Layer;
     public readonly brushLayer:Konva.Layer;
-    public readonly eraseLayer:Konva.Layer;
     private readonly config:Config;
     private brush?:IBrush;
     private tool?:ITool;
@@ -48,16 +48,12 @@ class Canvas {
             height,
             width
         });
+        this.backgroundLayer=new Konva.FastLayer();
         this.staticLayer=new Konva.Layer();
         this.brushLayer=new Konva.Layer();
-        this.eraseLayer=new Konva.Layer();
-        this.stage.add(this.staticLayer).add(this.brushLayer).add(this.eraseLayer);
-    
+        this.stage.add(this.backgroundLayer).add(this.staticLayer).add(this.brushLayer);
         this.config.listener(this.onConfigUpdate);
-        
-        
         this.updateBrush();
-        
         this.updateTool();
         
         
