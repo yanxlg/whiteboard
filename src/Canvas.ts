@@ -26,6 +26,7 @@ import {ITool} from '@/Tools/AbsTool';
 import {TransFormTool} from '@/Tools/TransformTool';
 import Konva from "konva";
 import {PencilBrush} from '@/Brushes/PencilBrush';
+import {EraseTool} from '@/Tools/EraseTool';
 
 
 
@@ -36,6 +37,7 @@ class Canvas {
     public readonly stage:Konva.Stage;
     public readonly staticLayer:Konva.Layer;
     public readonly brushLayer:Konva.Layer;
+    public readonly eraseLayer:Konva.Layer;
     private readonly config:Config;
     private brush?:IBrush;
     private tool?:ITool;
@@ -48,8 +50,8 @@ class Canvas {
         });
         this.staticLayer=new Konva.Layer();
         this.brushLayer=new Konva.Layer();
-        this.stage.add(this.staticLayer);
-        this.stage.add(this.brushLayer);
+        this.eraseLayer=new Konva.Layer();
+        this.stage.add(this.staticLayer).add(this.brushLayer).add(this.eraseLayer);
     
         this.config.listener(this.onConfigUpdate);
         
@@ -210,6 +212,8 @@ class Canvas {
             case 'transform':
                 this.tool=new TransFormTool(this,this.config);
                break;
+               case 'erase':
+                   this.tool=new EraseTool(this,this.config);
             default:
                 break;
         }

@@ -20,8 +20,9 @@ class Config{
     public transformerBorderWidth:number;
     public transformerAnchorStroke:string;
     public transformerAnchorWidth:number;
-    public brush?:"pencil"|"arrow"|"line"|"circle"|"rect"|"square"|"ellipse"|"wedge"|"star"|"ring"|"arc"|"polygon"|"text"|"pencil"="pencil";
-    public tool?:"transform";
+    public eraseSize:number;
+    public brush?:"pencil"|"arrow"|"line"|"circle"|"rect"|"square"|"ellipse"|"wedge"|"star"|"ring"|"arc"|"polygon"|"text"|"pencil";
+    public tool?:"transform"|"erase"="erase";
     public mouseDownEvents="mousedown touchstart pointerdown";
     public mouseMoveEvents="mousemove touchmove pointermove";
     public mouseUpEvents="mouseup touchend pointerup";
@@ -31,6 +32,7 @@ class Config{
         this.fill=undefined;
         this.stroke="red";
         this.strokeWidth=8;
+        this.eraseSize=5;
         this.selectionColor="rgba(100, 100, 255, 0.3)";
         this.selectionBorderColor="rgba(255, 255, 255, 0.3)";
         this.selectionBorderWidth=1;
