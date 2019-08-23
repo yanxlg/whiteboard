@@ -1,0 +1,35 @@
+/**
+ * @Author: yanxinaliang (rainyxlxl@163.com)
+ * @Date: 2019/8/14 15:01
+ * @Last Modified by: yanxinaliang (rainyxlxl@163.com)
+ * @Last Modified time: 2019/8/14 15:01
+ * @disc:
+ */
+.konvajs{
+    &-box{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    &-scroll{
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    &-large{
+        overflow: hidden;
+    }
+    &-tabs{
+        position: relative;
+        z-index: 10;
+        height: 42px;
+        .el-tabs__header{
+            margin-bottom: 0;
+        }
+    }
+}

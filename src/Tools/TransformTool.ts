@@ -55,10 +55,10 @@ class TransFormTool extends AbsTool<Konva.Rect>{
     
     @Bind
     protected onShapeClick(e: Konva.KonvaEventObject<MouseEvent>){
+        // do nothing if clicked NOT on our rectangles
         if (e.target === this.canvas.stage) {
             return;
         }
-        // do nothing if clicked NOT on our rectangles
         e.target.draggable(true);
         e.target.moveTo(this.canvas.brushLayer);
         const {transformerAnchorStroke,transformerAnchorWidth,transformerBorderStroke,transformerBorderWidth} = this.config;

@@ -5,11 +5,21 @@
  * @Last Modified time: 2019/8/5 13:53
  * @disc:Config 配置
  */
+import {ITabBarItem} from '@/TabBar';
 
+export interface IConfigProps {
+    containerWidth:number;
+    containerHeight:number;
+}
 
 export type IConfig = {[K in keyof Config]:Config[K]};
+export type IOptionalConfig = {[K in keyof Config]?:Config[K]};
+
+
 
 class Config{
+    public containerWidth:number;
+    public containerHeight:number;
     public fill?:string;
     public stroke:string;
     public strokeWidth:number;
@@ -21,14 +31,21 @@ class Config{
     public transformerAnchorStroke:string;
     public transformerAnchorWidth:number;
     public eraseSize:number;
-    public brush?:"pencil"|"arrow"|"line"|"circle"|"rect"|"square"|"ellipse"|"wedge"|"star"|"ring"|"arc"|"polygon"|"text"|"pencil";
-    public tool?:"transform"|"erase"="erase";
+    public brush?:"pencil"|"arrow"|"line"|"circle"|"rect"|"square"|"ellipse"|"wedge"|"star"|"ring"|"arc"|"polygon"|"text"|"pencil"="pencil";
+    public tool?:"transform"|"erase";
     public mouseDownEvents="mousedown touchstart pointerdown";
     public mouseMoveEvents="mousemove touchmove pointermove";
     public mouseUpEvents="mouseup touchend pointerup";
     public mouseOutEvents="mouseleave touchcancel pointerleave";
+    
+    
+    public pageMap:Map<string,ITabBarItem>=new Map();
+    public pageWbNumber?:string;
+    
     private updateListenerWeakSet:Set<(prevConfig:IConfig,nextConfig:IConfig)=>void>=new Set<(prevConfig:IConfig,nextConfig:IConfig)=> void>();
-    constructor(){
+    constructor(props:IConfigProps){
+        this.containerWidth=props.containerWidth;
+        this.containerHeight=props.containerHeight;
         this.fill=undefined;
         this.stroke="red";
         this.strokeWidth=8;
@@ -39,7 +56,7 @@ class Config{
         this.transformerBorderStroke=this.transformerAnchorStroke="#09ca51";
         this.transformerBorderWidth=this.transformerAnchorWidth=1;
     }
-    public update(config:IConfig,callback?:()=>void){
+    public update(config:IOptionalConfig,callback?:()=>void){
         const prevConfig = JSON.parse(JSON.stringify(this));
         Object.assign(this,config);
         this.updateListenerWeakSet.forEach((listener)=>{
