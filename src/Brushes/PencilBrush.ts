@@ -53,23 +53,27 @@ class PencilBrush extends AbsBrush<Konva.Line>{
     @Bind
     protected onMouseDown(e: Konva.KonvaEventObject<MouseEvent>) {
         super.onMouseDown(e);
-        const {stroke,strokeWidth} = this.context.config;
+        const {color,strokeWidth} = this.context.config;
+        
+        const _oldFillStyle=this.brushContext!.fillStyle;
+        
         // update context style
-        this.brushContext!.strokeStyle=stroke;
-        this.brushContext!.fillStyle=stroke;
+        this.brushContext!.strokeStyle=color;
+        this.brushContext!.fillStyle=color;
         this.brushContext!.lineWidth=strokeWidth;
         this.brushContext!.lineCap="round";
         this.brushContext!.lineJoin="round";
-        
         
         const point = this.canvas.stage!.getPointerPosition();
         this.points=[];
         this.addPoint(point);
         this.brushContext!.save();// transform 还原
+        this.brushContext!.beginPath();
         this.brushContext!.arc(point.x,point.y,strokeWidth/2,0,Math.PI*2);
         this.brushContext!.fill();
         this.brushContext!.restore();
         this.brushContext!.moveTo(point.x, point.y);
+        this.brushContext!.fillStyle=_oldFillStyle;
     }
     @Bind
     protected onMouseMove(e: Konva.KonvaEventObject<MouseEvent>) {
@@ -94,12 +98,12 @@ class PencilBrush extends AbsBrush<Konva.Line>{
         this.oldEnd = undefined;
         this.brushContext!.closePath();
 
-        const {stroke,strokeWidth} = this.context.config;
+        const {color,strokeWidth} = this.context.config;
         // 如果一个点
         if(this.points.length===1){
             const point = this.points[0];
             const circle = new Konva.Circle({
-                fill:stroke,
+                fill:color,
                 radius:strokeWidth/2,
                 x: point.x,
                 y: point.y
@@ -115,7 +119,7 @@ class PencilBrush extends AbsBrush<Konva.Line>{
                 lineCap: 'round',
                 lineJoin: 'round',
                 points:_points,
-                stroke: stroke,
+                stroke: color,
                 strokeWidth: strokeWidth,
                 tension: this.tension
             });

@@ -6,6 +6,8 @@
  * @disc:toolbar
  */
 @ToolbarItemSize:30px;
+@ToolbarPopoverItemSize:24px;
+@ToolbarActiveColor:#1890ff;
 
 .konvajs-toolbar{
     list-style-type: none;
@@ -22,13 +24,29 @@
         text-align: center;
         line-height: @ToolbarItemSize;
     }
-    &-tooltip{
-        position: relative;
+    &-active{
+        color: @ToolbarActiveColor!important;
+    }
+    &-popover{
+        &-item{
+            display: inline-block;
+            width: @ToolbarPopoverItemSize;
+            height: @ToolbarPopoverItemSize;
+            text-align: center;
+            font-size: 14px;
+            line-height: @ToolbarPopoverItemSize;
+            cursor: pointer;
+            color: #000;
+            &:hover{
+                color: @ToolbarActiveColor;
+            }
+        }
     }
 }
 
 .el-popover{
     width: auto!important;
+    min-width: auto!important;
 }
 
 .cp-app{

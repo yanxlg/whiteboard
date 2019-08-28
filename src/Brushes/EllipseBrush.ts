@@ -27,7 +27,7 @@ class EllipseBrush extends AbsBrush<Konva.Ellipse>{
         const {x,y} = this.start!;
         let width = this.end!.x-x;
         let height = this.end!.y-y;
-        const {fill,stroke,strokeWidth} = this.context.config;
+        const {color,strokeWidth} = this.context.config;
     
         if(this.shiftKey){
             // square
@@ -41,11 +41,11 @@ class EllipseBrush extends AbsBrush<Konva.Ellipse>{
         }
     
         return new Konva.Ellipse({
-            fill: fill,
+            fill: this.hollowState?undefined:color,
             radiusX: Math.abs(width)/2,
             radiusY: Math.abs(height)/2,
-            stroke: stroke,
-            strokeWidth: strokeWidth,
+            stroke: this.hollowState?color:undefined,
+            strokeWidth: this.hollowState?strokeWidth:undefined,
             x:x+width/2,
             y: y+height/2,
         });

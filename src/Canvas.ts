@@ -51,15 +51,14 @@ export declare interface ICanvasSizeProperties{
 Konva.hitOnDragEnabled = true;
 
 
-@decoratorFactory("brush,tool")
+@decoratorFactory("tool,shapeType")
 class Canvas {
     public stage:Konva.Stage;
     public backgroundLayer?:Konva.FastLayer;
     public readonly staticLayer:Konva.Layer;
     public readonly brushLayer:Konva.Layer;
     private readonly context:Context;
-    private brush?:IBrush;
-    private tool?:ITool;
+    private tool?:IBrush|ITool;
     constructor(container:HTMLDivElement,context:Context,properties:ICanvasSizeProperties) {
         this.context=context;
         this.stage=new Konva.Stage({
@@ -94,7 +93,6 @@ class Canvas {
         }
     
         this.stage.add(this.staticLayer).add(this.brushLayer);
-        this.updateBrush();
         this.updateTool();
         const circle=new Konva.Circle({
             fill:"red",
@@ -111,48 +109,70 @@ class Canvas {
         console.log("-----------------    destroy canvas    ---------------------");
     }
     private updateBrush(){
-        const {brush} = this.context.config;
-        this.brush&&this.brush.destroy();
-        switch (brush) {
+        const {shapeType} = this.context.config;
+        this.tool&&this.tool.destroy();
+        switch (shapeType) {
             case 'arrow':
-                this.brush=new ArrowBrush(this,this.context);
+                this.tool=new ArrowBrush(this,this.context);
                 break;
             case 'circle':
-                this.brush=new CircleBrush(this,this.context);
+                this.tool=new CircleBrush(this,this.context,false);
+                break;
+            case 'hollow_circle':
+                this.tool=new CircleBrush(this,this.context,true);
                 break;
             case 'line':
-                this.brush=new LineBrush(this,this.context);
+                this.tool=new LineBrush(this,this.context);
                 break;
             case "rect":
-                this.brush=new RectBrush(this,this.context);
+                this.tool=new RectBrush(this,this.context,false);
+                break;
+            case 'hollow_rect':
+                this.tool=new RectBrush(this,this.context,true);
                 break;
             case "square":
-                this.brush=new SquareBrush(this,this.context);
+                this.tool=new SquareBrush(this,this.context,false);
+                break;
+            case 'hollow_square':
+                this.tool=new SquareBrush(this,this.context,true);
                 break;
             case "ellipse":
-                this.brush=new EllipseBrush(this,this.context);
+                this.tool=new EllipseBrush(this,this.context,false);
+                break;
+            case 'hollow_ellipse':
+                this.tool=new EllipseBrush(this,this.context,true);
                 break;
             case "wedge":
-                this.brush=new WedgeBrush(this,this.context);
+                this.tool=new WedgeBrush(this,this.context,false);
+                break;
+            case 'hollow_wedge':
+                this.tool=new WedgeBrush(this,this.context,true);
                 break;
             case "star":
-                this.brush=new StarBrush(this,this.context);
+                this.tool=new StarBrush(this,this.context,false);
+                break;
+            case 'hollow_star':
+                this.tool=new StarBrush(this,this.context,true);
                 break;
             case "ring":
-                this.brush=new RingBrush(this,this.context);
+                this.tool=new RingBrush(this,this.context,false);
+                break;
+            case 'hollow_ring':
+                this.tool=new RingBrush(this,this.context,true);
                 break;
             case "arc":
-                this.brush=new ArcBrush(this,this.context);
+                this.tool=new ArcBrush(this,this.context,false);
+                break;
+            case 'hollow_arc':
+                this.tool=new ArcBrush(this,this.context,true);
                 break;
             case "polygon":
-                this.brush=new RegularPolygonBrush(this,this.context);
+                this.tool=new RegularPolygonBrush(this,this.context,false);
                 break;
-            case "text":
-                this.brush=new TextBrush(this,this.context);
+            case 'hollow_polygon':
+                this.tool=new RegularPolygonBrush(this,this.context,true);
                 break;
-            case 'pencil':
-                this.brush=new PencilBrush(this,this.context);
-                break;
+         
             default:
                 break;
         }
@@ -161,19 +181,27 @@ class Canvas {
         const {tool} = this.context.config;
         this.tool&&this.tool.destroy();
         switch (tool) {
-            case 'transform':
+            case 'selection':
                 this.tool=new TransFormTool(this,this.context);
-               break;
-               case 'erase':
-                   this.tool=new EraseTool(this,this.context);
+                break;
+           case 'erase':
+                this.tool=new EraseTool(this,this.context);
+                break;
+            case "text":
+                this.tool=new TextBrush(this,this.context);
+                break;
+            case 'pencil':
+                this.tool=new PencilBrush(this,this.context);
+                break;
+            case 'shape':
+                this.updateBrush();
+                break;
             default:
                 break;
         }
     }
     private onConfigUpdate(attr:string,value:any,config:IConfig){
-        if(attr==="brush"){
-            this.updateBrush();
-        }else if(attr==="tool"){
+        if(attr==="shapeType"||attr==="tool"){
             this.updateTool();
         }
     }

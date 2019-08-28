@@ -9,9 +9,8 @@ import {INNER_TOOLBAR_ITEM_LIST, IToolbarItem, Toolbar} from '@/Toolbar';
 import {MapUtil} from '@/utils/MapUtil';
 import {Bind} from 'lodash-decorators';
 import React, {RefObject} from 'react';
-import  ReactDOM from "react-dom";
-import "./index.css";
-
+import ReactDOM from 'react-dom';
+import './index.css';
 
 class Test extends React.Component{
     private ref:RefObject<HTMLDivElement>=React.createRef();
@@ -71,14 +70,22 @@ class Test extends React.Component{
     private onToolbarItemClick(item:IToolbarItem){
         switch (item.type) {
             case INNER_TOOLBAR_ITEM_LIST.Selection:
-                this.whiteBoard!.context.config.brush=undefined;
-                this.whiteBoard!.context.config.tool="transform";
+                this.whiteBoard!.context.config.tool="selection";
                 break;
             case INNER_TOOLBAR_ITEM_LIST.Pencil:
-                this.whiteBoard!.context.config.brush="pencil";
-                this.whiteBoard!.context.config.tool=undefined;
+                this.whiteBoard!.context.config.tool="pencil";
+                break;
+            case INNER_TOOLBAR_ITEM_LIST.Text:
+                this.whiteBoard!.context.config.tool="text";
                 break;
             case INNER_TOOLBAR_ITEM_LIST.Shape:
+                this.whiteBoard!.context.config.tool="shape";
+                break;
+            case INNER_TOOLBAR_ITEM_LIST.Erase:
+                this.whiteBoard!.context.config.tool="erase";
+                break;
+            case INNER_TOOLBAR_ITEM_LIST.Ferule:
+                this.whiteBoard!.context.config.tool="ferule";
                 break;
         }
         

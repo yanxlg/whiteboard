@@ -10,15 +10,15 @@ import Konva from 'konva';
 
 class CircleBrush extends AbsBrush<Konva.Circle>{
     protected getObject():Konva.Circle{
-        const {stroke,fill,strokeWidth} = this.context.config;
+        const {color,strokeWidth} = this.context.config;
         const offsetX = this.end!.x-this.start!.x;
         const offsetY = this.end!.y-this.start!.y;
         const radius = Math.min(Math.abs(offsetX),Math.abs(offsetY))/2;
         return new Konva.Circle({
-            fill,
+            fill:this.hollowState?undefined:color,
             radius,
-            stroke,
-            strokeWidth:stroke?strokeWidth:0,
+            stroke:this.hollowState?color:undefined,
+            strokeWidth:this.hollowState?strokeWidth:0,
             x: this.start!.x+(offsetX>0?radius:-radius),
             y: this.start!.y+(offsetY>0?radius:-radius)
         });

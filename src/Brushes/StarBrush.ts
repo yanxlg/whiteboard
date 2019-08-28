@@ -10,18 +10,18 @@ import Konva from 'konva';
 
 class StarBrush extends AbsBrush<Konva.Star>{
     protected getObject(): Konva.Star {
-        const {fill,stroke,strokeWidth} = this.context.config;
+        const {color,strokeWidth} = this.context.config;
         const offsetX = this.end!.x-this.start!.x;
         const offsetY = this.end!.y-this.start!.y;
         const radius = Math.min(Math.abs(offsetX),Math.abs(offsetY))/2;
         const ratio = 3 - 4*(Math.pow(Math.sin(Math.PI/10),2));
         return new Konva.Star({
-            fill: fill,
+            fill: this.hollowState?undefined:color,
             innerRadius: radius/ratio,
             numPoints: 5,
             outerRadius: radius,
-            stroke: stroke,
-            strokeWidth: strokeWidth,
+            stroke: this.hollowState?color:undefined,
+            strokeWidth: this.hollowState?strokeWidth:undefined,
             x: this.start!.x+(offsetX>0?radius:-radius),
             y: this.start!.y+(offsetY>0?radius:-radius)
         });

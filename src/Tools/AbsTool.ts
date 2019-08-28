@@ -7,7 +7,7 @@
  */
 
 import {Canvas} from '@/Canvas';
-import {Config} from '@/Config';
+import {Context} from '@/Context';
 import Konva from 'konva';
 import {Bind} from 'lodash-decorators';
 
@@ -18,13 +18,13 @@ export interface ITool {
 
 abstract class AbsTool<T extends Konva.Shape> implements ITool{
     public cursor:any;
-    public config:Config;
+    public context:Context;
     protected canvas:Canvas;
     protected object?:T;
     protected start?:Konva.Vector2d;
     protected end?:Konva.Vector2d;
-    constructor(canvas:Canvas, config:Config){
-        this.config=config;
+    constructor(canvas:Canvas, context:Context){
+        this.context=context;
         this.canvas=canvas;
         this.attachEvents();
     }
@@ -58,16 +58,16 @@ abstract class AbsTool<T extends Konva.Shape> implements ITool{
         this.onMouseUp(e);
     }
     protected attachEvents(){
-        this.canvas.stage.on(this.config.mouseDownEvents,this.onMouseDown);
-        this.canvas.stage.on(this.config.mouseMoveEvents,this.onLayerMouseMove);
-        this.canvas.stage.on(this.config.mouseUpEvents,this.onMouseUp);
-        this.canvas.stage.on(this.config.mouseOutEvents,this.onMouseOut);
+        this.canvas.stage.on(Context.mouseDownEvents,this.onMouseDown);
+        this.canvas.stage.on(Context.mouseMoveEvents,this.onLayerMouseMove);
+        this.canvas.stage.on(Context.mouseUpEvents,this.onMouseUp);
+        this.canvas.stage.on(Context.mouseOutEvents,this.onMouseOut);
     }
     protected detachEvents(){
-        this.canvas.stage.off(this.config.mouseDownEvents,this.onMouseDown);
-        this.canvas.stage.off(this.config.mouseMoveEvents,this.onLayerMouseMove);
-        this.canvas.stage.off(this.config.mouseUpEvents,this.onMouseUp);
-        this.canvas.stage.off(this.config.mouseOutEvents,this.onMouseOut);
+        this.canvas.stage.off(Context.mouseDownEvents,this.onMouseDown);
+        this.canvas.stage.off(Context.mouseMoveEvents,this.onLayerMouseMove);
+        this.canvas.stage.off(Context.mouseUpEvents,this.onMouseUp);
+        this.canvas.stage.off(Context.mouseOutEvents,this.onMouseOut);
     }
 }
 

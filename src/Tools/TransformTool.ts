@@ -9,7 +9,7 @@
  * all shapes support drag
  */
 import {Canvas} from '@/Canvas';
-import {Config} from '@/Config';
+import {Context} from '@/Context';
 import {AbsTool} from '@/Tools/AbsTool';
 import Konva from 'konva';
 import {IRect} from 'konva/types/types';
@@ -19,8 +19,8 @@ class TransFormTool extends AbsTool<Konva.Rect>{
     private transformer?:Konva.Transformer=undefined;
     private group?:Konva.Group=undefined;
     private target?:Konva.Shape|Konva.Stage;
-    constructor(canvas:Canvas, config:Config){
-        super(canvas,config);
+    constructor(canvas:Canvas, context:Context){
+        super(canvas,context);
         this.canvas.staticLayer.draw();
         // allow draggable
         this.canvas.staticLayer.children.toArray().forEach((shape)=>{
@@ -61,7 +61,7 @@ class TransFormTool extends AbsTool<Konva.Rect>{
         }
         e.target.draggable(true);
         e.target.moveTo(this.canvas.brushLayer);
-        const {transformerAnchorStroke,transformerAnchorWidth,transformerBorderStroke,transformerBorderWidth} = this.config;
+        const {transformerAnchorStroke,transformerAnchorWidth,transformerBorderStroke,transformerBorderWidth} = this.context.config;
         !this.transformer&&(this.transformer=new Konva.Transformer({
             anchorStroke:transformerAnchorStroke,
             anchorStrokeWidth:transformerAnchorWidth,
@@ -101,7 +101,7 @@ class TransFormTool extends AbsTool<Konva.Rect>{
             this.object!.height(this.end!.y-this.start!.y);
             this.canvas.brushLayer.draw();
         }else{
-            const {selectionColor,selectionBorderColor,selectionBorderWidth} = this.config;
+            const {selectionColor,selectionBorderColor,selectionBorderWidth} = this.context.config;
             this.object=new Konva.Rect({
                 fill:selectionColor,
                 height:this.end!.y-this.start!.y,
@@ -141,7 +141,7 @@ class TransFormTool extends AbsTool<Konva.Rect>{
             });
             if(this.group.children.length>0){
                 this.canvas.brushLayer.add(this.group);
-                const {transformerAnchorStroke,transformerAnchorWidth,transformerBorderStroke,transformerBorderWidth} = this.config;
+                const {transformerAnchorStroke,transformerAnchorWidth,transformerBorderStroke,transformerBorderWidth} = this.context.config;
                 !this.transformer&&(this.transformer=new Konva.Transformer({
                     anchorStroke:transformerAnchorStroke,
                     anchorStrokeWidth:transformerAnchorWidth,

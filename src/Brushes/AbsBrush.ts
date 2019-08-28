@@ -23,10 +23,11 @@ abstract class AbsBrush<T extends Konva.Shape> implements IBrush{
     protected object?:T;
     protected start?:Konva.Vector2d;
     protected end?:Konva.Vector2d;
-    
-    constructor(canvas:Canvas, context:Context){
+    protected hollowState?:boolean=false;
+    constructor(canvas:Canvas, context:Context,isHollow?:boolean){
         this.context=context;
         this.canvas=canvas;
+        this.hollowState=isHollow;
         this.attachEvents();
     }
     public destroy():void{

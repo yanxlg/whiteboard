@@ -21,6 +21,7 @@ class ColorPopover extends PureComponent<IColorPopoverProps>{
         this.colorPicker = new ColorPicker({
             actionCallback:this.onColorPickerActionCallback,
             appendTo:this.container.current,
+            color:this.props.config.color,
             customBG: '#808080',
             imagePath: 'images/',
             memoryColors: [
@@ -46,7 +47,7 @@ class ColorPopover extends PureComponent<IColorPopoverProps>{
     @Bind
     private onColorPickerActionCallback(e:MouseEvent, action:string){
         if(action==="saveAsBackground"||action==="fromMemory"){
-            this.props.config.stroke=`#${this.colorPicker.color.colors.HEX}`;
+            this.props.config.color=`#${this.colorPicker.color.colors.HEX}`;
         }
         if(action==="resetColor"){
             // cancel picker

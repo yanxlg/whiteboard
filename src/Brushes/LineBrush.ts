@@ -11,11 +11,11 @@ import Konva from 'konva';
 class LineBrush extends AbsBrush<Konva.Line>{
     
     protected getObject(){
-        const {stroke,strokeWidth} = this.context.config;
+        const {color,strokeWidth} = this.context.config;
         return new Konva.Line({
-            fill: stroke,
+            fill: undefined,
             points: [this.start!.x, this.start!.y, this.end!.x, this.end!.y],
-            stroke: stroke,
+            stroke: color,
             strokeWidth:strokeWidth
         });
     }

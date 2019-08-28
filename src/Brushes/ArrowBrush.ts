@@ -11,11 +11,11 @@ import Konva from 'konva';
 
 class ArrowBrush extends LineBrush{
     protected getObject(){
-        const {stroke,strokeWidth} = this.context.config;
+        const {color,strokeWidth} = this.context.config;
         return new Konva.Arrow({
-            fill: stroke,
+            fill: color,
             points: [this.start!.x, this.start!.y, this.end!.x, this.end!.y],
-            stroke: stroke,
+            stroke: color,
             strokeWidth:strokeWidth
         });
     }

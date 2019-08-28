@@ -10,7 +10,7 @@ import Konva from 'konva';
 
 class WedgeBrush extends AbsBrush<Konva.Wedge>{
     protected getObject(): Konva.Wedge {
-        const {fill,strokeWidth,stroke} = this.context.config;
+        const {color,strokeWidth} = this.context.config;
         const offsetX = this.end!.x-this.start!.x;
         const offsetY = this.end!.y-this.start!.y;
         const radius = Math.abs(offsetY);
@@ -20,11 +20,11 @@ class WedgeBrush extends AbsBrush<Konva.Wedge>{
         const rotation = degree-180;
         return new Konva.Wedge({
             angle: angle,
-            fill,
+            fill:this.hollowState?undefined:color,
             radius: radius,
             rotation: rotation,
-            stroke,
-            strokeWidth,
+            stroke:this.hollowState?color:undefined,
+            strokeWidth:this.hollowState?strokeWidth:undefined,
             x: this.start!.x+offsetX/2,
             y: this.start!.y+offsetY+(offsetY>0?0:radius),
         });

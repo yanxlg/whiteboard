@@ -10,7 +10,7 @@ import Konva from 'konva';
 
 class ArcBrush extends AbsBrush<Konva.Arc>{
     protected getObject(): Konva.Arc {
-        const {fill,strokeWidth,stroke} = this.context.config;
+        const {color,strokeWidth} = this.context.config;
         const offsetX = this.end!.x-this.start!.x;
         const offsetY = this.end!.y-this.start!.y;
         const radius = Math.abs(offsetY);
@@ -22,12 +22,12 @@ class ArcBrush extends AbsBrush<Konva.Arc>{
         
         return new Konva.Arc({
             angle: angle,
-            fill: fill,
+            fill: this.hollowState?undefined:color,
             innerRadius: innerRadius,
             outerRadius: radius,
             rotation: rotation,
-            stroke: stroke,
-            strokeWidth: strokeWidth,
+            stroke: this.hollowState?color:undefined,
+            strokeWidth: this.hollowState?strokeWidth:undefined,
             x: this.start!.x+offsetX/2,
             y: this.start!.y+offsetY+(offsetY>0?0:radius),
         });

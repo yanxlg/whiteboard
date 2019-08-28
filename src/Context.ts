@@ -13,8 +13,7 @@ import {Bind} from 'lodash-decorators';
 export declare interface IConfig {
     containerWidth:number;
     containerHeight:number;
-    fill?:string;
-    stroke:string;
+    color:string;
     strokeWidth:number;
     selectionColor:string;
     selectionBorderColor:string;
@@ -24,8 +23,8 @@ export declare interface IConfig {
     transformerAnchorStroke:string;
     transformerAnchorWidth:number;
     eraseSize:number;
-    brush?:"pencil"|"arrow"|"line"|"circle"|"rect"|"square"|"ellipse"|"wedge"|"star"|"ring"|"arc"|"polygon"|"text"|"pencil";
-    tool?:"transform"|"erase";
+    tool?:"selection"|"pencil"|"text"|"shape"|"erase"|"ferule";
+    shapeType:"arrow"|"line"|"circle"|"hollow_circle"|"triangle"|"hollow_triangle"|"rect"|"hollow_rect"|"square"|"hollow_square"|"ellipse"|"hollow_ellipse"|"wedge"|"hollow_wedge"|"star"|"hollow_star"|"ring"|"hollow_ring"|"arc"|"hollow_arc"|"polygon"|"hollow_polygon"
 }
 
 
@@ -136,19 +135,19 @@ class Context{
     
     constructor(props:IConfigProps){
         const _config:IConfig={
+            color:"#000000",
             containerHeight:props.containerHeight,
             containerWidth:props.containerWidth,
             eraseSize:5,
-            fill:undefined,
             selectionBorderColor:"rgba(255, 255, 255, 0.3)",
             selectionBorderWidth:1,
             selectionColor:"rgba(100, 100, 255, 0.3)",
-            stroke:"red",
+            shapeType:"hollow_rect",
             strokeWidth:8,
             transformerAnchorStroke:"#09ca51",
             transformerAnchorWidth:1,
             transformerBorderStroke:"#09ca51",
-            transformerBorderWidth:1,
+            transformerBorderWidth:1
         };
         const self = this;
         this.config=new Proxy(_config,{
@@ -164,7 +163,6 @@ class Context{
                         listener(p,value,target);
                     })
                 }
-                console.log("set config");
                 return result;
             }
         });

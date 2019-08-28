@@ -10,17 +10,17 @@ import Konva from 'konva';
 
 class RingBrush extends AbsBrush<Konva.Ring>{
     protected getObject(): Konva.Ring {
-        const {stroke,fill,strokeWidth} = this.context.config;
+        const {color,strokeWidth} = this.context.config;
         const offsetX = this.end!.x-this.start!.x;
         const offsetY = this.end!.y-this.start!.y;
         const radius = Math.min(Math.abs(offsetX),Math.abs(offsetY))/2;
         const innerRadius = radius>60?radius-30:radius*0.5;
         return new Konva.Ring({
-            fill: fill,
+            fill: this.hollowState?undefined:color,
             innerRadius: innerRadius,
             outerRadius: radius,
-            stroke: stroke,
-            strokeWidth: strokeWidth,
+            stroke: this.hollowState?color:undefined,
+            strokeWidth: this.hollowState?strokeWidth:undefined,
             x: this.start!.x+(offsetX>0?radius:-radius),
             y: this.start!.y+(offsetY>0?radius:-radius)
         });

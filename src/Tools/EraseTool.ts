@@ -16,7 +16,7 @@ class EraseTool extends AbsTool<Konva.Rect>{
     protected onMouseDown(e: Konva.KonvaEventObject<MouseEvent>) {
         super.onMouseDown(e);
         const pos = this.canvas.stage.getPointerPosition();
-        const {eraseSize} = this.config;
+        const {eraseSize} = this.context.config;
         this.eraseLine = new Konva.Line({
             globalCompositeOperation:"destination-out",
             lineCap: 'round',
