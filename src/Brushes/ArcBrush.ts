@@ -10,7 +10,7 @@ import Konva from 'konva';
 
 class ArcBrush extends AbsBrush<Konva.Arc>{
     protected getObject(): Konva.Arc {
-        const {fill,strokeWidth,stroke} = this.config;
+        const {fill,strokeWidth,stroke} = this.context.config;
         const offsetX = this.end!.x-this.start!.x;
         const offsetY = this.end!.y-this.start!.y;
         const radius = Math.abs(offsetY);

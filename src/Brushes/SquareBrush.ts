@@ -25,7 +25,7 @@ class SquareBrush extends AbsBrush<Konva.Rect>{
         const {x,y} = this.start!;
         let width = this.end!.x-x;
         let height = this.end!.y-y;
-        const {fill,stroke,strokeWidth} = this.config;
+        const {fill,stroke,strokeWidth} = this.context.config;
         
         if(this.shiftKey){
             // square

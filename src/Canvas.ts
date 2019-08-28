@@ -24,12 +24,11 @@ import {SquareBrush} from '@/Brushes/SquareBrush';
 import {StarBrush} from '@/Brushes/StarBrush';
 import {TextBrush} from '@/Brushes/TextBrush';
 import {WedgeBrush} from '@/Brushes/WedgeBrush';
-import {Config,IConfig} from '@/Config';
+import {Context, decoratorFactory, IConfig} from '@/Context';
 import {ITool} from '@/Tools/AbsTool';
 import {EraseTool} from '@/Tools/EraseTool';
 import {TransFormTool} from '@/Tools/TransformTool';
 import Konva from "konva";
-
 
 
 export declare interface ICanvasSizeProperties{
@@ -51,16 +50,18 @@ export declare interface ICanvasSizeProperties{
 // @ts-ignore
 Konva.hitOnDragEnabled = true;
 
+
+@decoratorFactory("brush,tool")
 class Canvas {
-    public stage?:Konva.Stage;
+    public stage:Konva.Stage;
     public backgroundLayer?:Konva.FastLayer;
     public readonly staticLayer:Konva.Layer;
     public readonly brushLayer:Konva.Layer;
-    private readonly config:Config;
+    private readonly context:Context;
     private brush?:IBrush;
     private tool?:ITool;
-    constructor(container:HTMLDivElement,config:Config,properties:ICanvasSizeProperties) {
-        this.config=config;
+    constructor(container:HTMLDivElement,context:Context,properties:ICanvasSizeProperties) {
+        this.context=context;
         this.stage=new Konva.Stage({
             container:container,
             height:properties.contentHeight,
@@ -93,10 +94,8 @@ class Canvas {
         }
     
         this.stage.add(this.staticLayer).add(this.brushLayer);
-        this.config.listener(this.onConfigUpdate);
         this.updateBrush();
         this.updateTool();
-    
         const circle=new Konva.Circle({
             fill:"red",
             radius:50,
@@ -106,75 +105,77 @@ class Canvas {
         this.staticLayer.add(circle);
         this.stage.draw();
     }
-    public updateProperties(properties:ICanvasSizeProperties){
-        // update
-    }
+  
     public destroy(){
-        this.config.offListener(this.onConfigUpdate);
+        console.log("-----------------    destroy context listener -------------------");
+        console.log("-----------------    destroy canvas    ---------------------");
     }
     private updateBrush(){
-        const {brush} = this.config;
+        const {brush} = this.context.config;
         this.brush&&this.brush.destroy();
         switch (brush) {
             case 'arrow':
-                this.brush=new ArrowBrush(this,this.config);
+                this.brush=new ArrowBrush(this,this.context);
                 break;
             case 'circle':
-                this.brush=new CircleBrush(this,this.config);
+                this.brush=new CircleBrush(this,this.context);
                 break;
             case 'line':
-                this.brush=new LineBrush(this,this.config);
+                this.brush=new LineBrush(this,this.context);
                 break;
             case "rect":
-                this.brush=new RectBrush(this,this.config);
+                this.brush=new RectBrush(this,this.context);
                 break;
             case "square":
-                this.brush=new SquareBrush(this,this.config);
+                this.brush=new SquareBrush(this,this.context);
                 break;
             case "ellipse":
-                this.brush=new EllipseBrush(this,this.config);
+                this.brush=new EllipseBrush(this,this.context);
                 break;
             case "wedge":
-                this.brush=new WedgeBrush(this,this.config);
+                this.brush=new WedgeBrush(this,this.context);
                 break;
             case "star":
-                this.brush=new StarBrush(this,this.config);
+                this.brush=new StarBrush(this,this.context);
                 break;
             case "ring":
-                this.brush=new RingBrush(this,this.config);
+                this.brush=new RingBrush(this,this.context);
                 break;
             case "arc":
-                this.brush=new ArcBrush(this,this.config);
+                this.brush=new ArcBrush(this,this.context);
                 break;
             case "polygon":
-                this.brush=new RegularPolygonBrush(this,this.config);
+                this.brush=new RegularPolygonBrush(this,this.context);
                 break;
             case "text":
-                this.brush=new TextBrush(this,this.config);
+                this.brush=new TextBrush(this,this.context);
                 break;
             case 'pencil':
-                this.brush=new PencilBrush(this,this.config);
+                this.brush=new PencilBrush(this,this.context);
                 break;
             default:
                 break;
         }
     }
     private updateTool(){
-        const {tool} = this.config;
+        const {tool} = this.context.config;
         this.tool&&this.tool.destroy();
         switch (tool) {
             case 'transform':
-                this.tool=new TransFormTool(this,this.config);
+                this.tool=new TransFormTool(this,this.context);
                break;
                case 'erase':
-                   this.tool=new EraseTool(this,this.config);
+                   this.tool=new EraseTool(this,this.context);
             default:
                 break;
         }
     }
-    private onConfigUpdate(prevConfig:IConfig,nextConfig:IConfig){
-        (prevConfig.brush!==nextConfig.brush)&&this.updateBrush();
-        (prevConfig.tool!==nextConfig.tool)&&this.updateTool();
+    private onConfigUpdate(attr:string,value:any,config:IConfig){
+        if(attr==="brush"){
+            this.updateBrush();
+        }else if(attr==="tool"){
+            this.updateTool();
+        }
     }
 }
 

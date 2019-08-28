@@ -8,7 +8,7 @@
 import {Tabs} from 'element-react';
 import 'element-theme-default';
 import {Bind} from 'lodash-decorators';
-import React from "react";
+import React, {RefObject} from 'react';
 import TabsPane = ElementReact.TabsPane;
 
 
@@ -26,13 +26,14 @@ export declare interface ITabBarState {
 }
 
 export declare interface ITabBarProps {
-    onTabAdd:(component:TabBar)=>void;
-    onTabRemove:(rmWbNumber:string,activeWbNumber:string|undefined,component:TabBar)=>void;
+    onTabAdd:(component:TabBar)=>ITabBarState;
+    onTabRemove:(rmWbNumber:string,activeWbNumber:string|undefined,component:TabBar)=>ITabBarState;
     onTabClick:(wbNumber:string,component:TabBar)=>void;
 }
 
 
 class TabBar extends React.PureComponent<ITabBarProps,ITabBarState>{
+    private tabBarRef: RefObject<Tabs>=React.createRef();
     constructor(props:ITabBarProps) {
         super(props);
         this.state={
@@ -47,12 +48,15 @@ class TabBar extends React.PureComponent<ITabBarProps,ITabBarState>{
                 pageWbNumber:pageWbNumber||state.pageWbNumber,
                 tabs
             }
+        },()=>{
+            // @ts-ignore
+            this.tabBarRef.current!.scrollToActiveTab();// fix active Tab position
         });
     }
     public render() {
         const {pageWbNumber="none",tabs} = this.state;
         return (
-            <Tabs type="card" value={pageWbNumber} className="konvajs-tabs" editable={true} onTabEdit={this.editTab} onTabClick={this.onTabClick}>
+            <Tabs ref={this.tabBarRef} type="border-card" value={pageWbNumber} className="konvajs-tabs" editable={true} onTabEdit={this.editTab} onTabClick={this.onTabClick}>
                 {
                     tabs.map((item) => {
                         const {closable=true,disabled=false,label,wbNumber} = item;
@@ -66,11 +70,13 @@ class TabBar extends React.PureComponent<ITabBarProps,ITabBarState>{
     private editTab(action:"add"|"remove", tabItem:any) {
         if (action === 'add') {
             // 创建一个tab
-            this.props.onTabAdd(this);
+            const result = this.props.onTabAdd(this);
+            this.updateTabList(result.tabs,result.pageWbNumber);
         }
         if (action === 'remove') {
             const nextPageWbNumber=tabItem._owner.child.memoizedState.currentName;
-            this.props.onTabRemove(tabItem.props.name,nextPageWbNumber,this);
+            const result = this.props.onTabRemove(tabItem.props.name,nextPageWbNumber,this);
+            this.updateTabList(result.tabs,result.pageWbNumber);
         }
     }
     @Bind

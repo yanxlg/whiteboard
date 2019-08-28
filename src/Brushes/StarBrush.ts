@@ -10,7 +10,7 @@ import Konva from 'konva';
 
 class StarBrush extends AbsBrush<Konva.Star>{
     protected getObject(): Konva.Star {
-        const {fill,stroke,strokeWidth} = this.config;
+        const {fill,stroke,strokeWidth} = this.context.config;
         const offsetX = this.end!.x-this.start!.x;
         const offsetY = this.end!.y-this.start!.y;
         const radius = Math.min(Math.abs(offsetX),Math.abs(offsetY))/2;

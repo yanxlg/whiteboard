@@ -1,9 +1,9 @@
-import {Config} from '@/Config';
+import {Context} from '@/Context';
 import "@/less/layout.less";
 import {Page} from '@/Page';
 
 class WhiteBoard{
-    public readonly config:Config;
+    public readonly context:Context;
     private container:HTMLDivElement;
     constructor(container:string|HTMLDivElement){
         const containerEl = typeof container==="string"?document.querySelector(container) as HTMLDivElement:container;
@@ -12,7 +12,7 @@ class WhiteBoard{
         containerEl.appendChild(box);
         this.container=box;
         // 初始值需要计算
-        this.config=new Config({
+        this.context=new Context({
             containerHeight:800,
             containerWidth:600
         });
@@ -25,8 +25,8 @@ class WhiteBoard{
         // 抛出消息  throw
         new Page({
             bgImage:image,
-            config:this.config,
             container:this.container,
+            context:this.context,
             pageId:"dsadsa",
         },property);
     }

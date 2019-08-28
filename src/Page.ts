@@ -7,14 +7,14 @@
  * support image or canvas
  */
 import {Canvas, ICanvasSizeProperties} from '@/Canvas';
-import {Config} from '@/Config';
+import {Context} from '@/Context';
 import {Bind} from 'lodash-decorators';
 
 export interface IPage {
     pageId:number|string;
     pageNo?:number;// 支持多页管理
     bgImage?:string;
-    config:Config;
+    context:Context;
     container:HTMLDivElement;
 }
 
@@ -27,26 +27,26 @@ class Page {
     private pageId:number|string;
     private pageNo?:number;
     private bgImage?:string;
-    private config:Config;
+    private context:Context;
     private container:HTMLDivElement;
     private canvas?:Canvas;
     constructor(props:IPage,sizeProperty?:IPageSizeProperties){
         this.pageId=props.pageId;
         this.pageNo=props.pageNo;
         this.bgImage=props.bgImage;
-        this.config=props.config;
+        this.context=props.context;
         this.container=props.container;
         if(void 0 !==sizeProperty){
             const properties = this.getCanvasProperties(sizeProperty.imageWidth,sizeProperty.imageHeight);
             const image = new Image();
             image.src=this.bgImage!;
-            this.canvas=new Canvas(this.container,this.config,Object.assign({
+            this.canvas=new Canvas(this.container,this.context,Object.assign({
                 ...properties,
                 bgImage:image
             }));
         }else{
             this.getCanvasSize(this.bgImage).then((properties:ICanvasSizeProperties)=>{
-                this.canvas=new Canvas(this.container,this.config,properties);
+                this.canvas=new Canvas(this.container,this.context,properties);
             },()=>{
                 // 加载异常
                 alert("loadingerror 重试");
@@ -56,8 +56,8 @@ class Page {
     }
     private getCanvasProperties(width:number,height:number){
         const imageRatio = height/width;
-        const originWidth = this.config.containerWidth;
-        const originHeight = this.config.containerHeight;
+        const originWidth = this.context.config.containerWidth;
+        const originHeight = this.context.config.containerHeight;
         if(originHeight/originWidth<imageRatio){
             const nextHeight = originWidth*imageRatio;
             return {
@@ -129,8 +129,8 @@ class Page {
                 };
                 image.src=imagePath;
             }else{
-                const originWidth = this.config.containerWidth;
-                const originHeight = this.config.containerHeight;
+                const originWidth = this.context.config.containerWidth;
+                const originHeight = this.context.config.containerHeight;
                 resolve({
                     contentHeight:originHeight,
                     contentWidth:originWidth,

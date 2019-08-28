@@ -10,7 +10,7 @@ import Konva from 'konva';
 
 class RegularPolygonBrush extends AbsBrush<Konva.RegularPolygon>{
     protected getObject(): Konva.RegularPolygon {
-        const {stroke,fill,strokeWidth} = this.config;
+        const {stroke,fill,strokeWidth} = this.context.config;
         const offsetX = this.end!.x-this.start!.x;
         const offsetY = this.end!.y-this.start!.y;
         const radius = Math.min(Math.abs(offsetX),Math.abs(offsetY))/2;

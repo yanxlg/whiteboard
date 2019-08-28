@@ -1,0 +1,50 @@
+/**
+ * @Author: yanxinaliang (rainyxlxl@163.com)
+ * @Date: 2019/8/26 9:54
+ * @Last Modified by: yanxinaliang (rainyxlxl@163.com)
+ * @Last Modified time: 2019/8/26 9:54
+ * @disc:toolbar
+ */
+@ToolbarItemSize:30px;
+
+.konvajs-toolbar{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    &-item{
+        padding: 0;
+        margin: 0;
+        display: inline-block;
+        width: @ToolbarItemSize;
+        height: @ToolbarItemSize;
+        cursor: pointer;
+        box-sizing: border-box;
+        text-align: center;
+        line-height: @ToolbarItemSize;
+    }
+    &-tooltip{
+        position: relative;
+    }
+}
+
+.el-popover{
+    width: auto!important;
+}
+
+.cp-app{
+    position: relative;
+}
+
+.cp-memo-store{
+    display: none;
+}
+.cp-memo-cursor{
+    display: none;
+}
+
+.cp-resize{
+    display: none;
+}
+.cp-exit{
+    display: none;
+}

@@ -27,8 +27,20 @@
     &-tabs{
         position: relative;
         z-index: 10;
-        height: 42px;
         .el-tabs__header{
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        .el-tabs__nav-scroll{
+            height: 42px;
+        }
+        .el-tabs__content{
+            display: none;
+        }
+        &.el-tabs--border-card{
+            box-shadow: none;
+        }
+        .el-tabs__nav-wrap{
             margin-bottom: 0;
         }
     }

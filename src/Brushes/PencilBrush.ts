@@ -7,39 +7,40 @@
  */
 import {AbsBrush} from '@/Brushes/AbsBrush';
 import {Canvas} from '@/Canvas';
-import {Config} from '@/Config';
+import {Context} from '@/Context';
 import Konva from 'konva';
 import {Bind} from 'lodash-decorators';
 
 class PencilBrush extends AbsBrush<Konva.Line>{
-    private context?:CanvasRenderingContext2D;
+    private brushContext?:CanvasRenderingContext2D;
     private points:Konva.Vector2d[];
     private oldEnd?:Konva.Vector2d;
     private tension:number=0.5;
     private originStyle:{strokeStyle:any;lineWidth:number;lineCap:any;lineJoin:any;fillStyle:any};
-    constructor(canvas:Canvas, config:Config){
-        super(canvas,config);
+    constructor(canvas:Canvas, context:Context){
+        super(canvas,context);
         // brushLayer Context
-        this.context=canvas.brushLayer.getContext()._context;
+        this.brushContext=canvas.brushLayer.getContext()._context;
         this.points=[];
         this.originStyle={
-            fillStyle:this.context.fillStyle,
-            lineCap:this.context.lineCap,
-            lineJoin:this.context.lineJoin,
-            lineWidth:this.context.lineWidth,
-            strokeStyle:this.context.strokeStyle
+            fillStyle:this.brushContext.fillStyle,
+            lineCap:this.brushContext.lineCap,
+            lineJoin:this.brushContext.lineJoin,
+            lineWidth:this.brushContext.lineWidth,
+            strokeStyle:this.brushContext.strokeStyle
         }
     }
     @Bind
     public destroy(): void {
         super.destroy();
-        this.context!.lineJoin=this.originStyle.lineJoin;
-        this.context!.lineCap=this.originStyle.lineCap;
-        this.context!.strokeStyle=this.originStyle.strokeStyle;
-        this.context!.lineWidth=this.originStyle.lineWidth;
-        this.context!.fillStyle=this.originStyle.fillStyle;
-        
-        this.context=undefined;
+        if(this.brushContext){
+            this.brushContext!.lineJoin=this.originStyle.lineJoin;
+            this.brushContext!.lineCap=this.originStyle.lineCap;
+            this.brushContext!.strokeStyle=this.originStyle.strokeStyle;
+            this.brushContext!.lineWidth=this.originStyle.lineWidth;
+            this.brushContext!.fillStyle=this.originStyle.fillStyle;
+        }
+        this.brushContext=undefined;
     }
     protected getObject():any{
         return undefined;
@@ -52,23 +53,23 @@ class PencilBrush extends AbsBrush<Konva.Line>{
     @Bind
     protected onMouseDown(e: Konva.KonvaEventObject<MouseEvent>) {
         super.onMouseDown(e);
-        const {stroke,strokeWidth} = this.config;
+        const {stroke,strokeWidth} = this.context.config;
         // update context style
-        this.context!.strokeStyle=stroke;
-        this.context!.fillStyle=stroke;
-        this.context!.lineWidth=strokeWidth;
-        this.context!.lineCap="round";
-        this.context!.lineJoin="round";
+        this.brushContext!.strokeStyle=stroke;
+        this.brushContext!.fillStyle=stroke;
+        this.brushContext!.lineWidth=strokeWidth;
+        this.brushContext!.lineCap="round";
+        this.brushContext!.lineJoin="round";
         
         
-        const point = this.canvas.stage.getPointerPosition();
+        const point = this.canvas.stage!.getPointerPosition();
         this.points=[];
         this.addPoint(point);
-        this.context!.save();// transform 还原
-        this.context!.arc(point.x,point.y,strokeWidth/2,0,Math.PI*2);
-        this.context!.fill();
-        this.context!.restore();
-        this.context!.moveTo(point.x, point.y);
+        this.brushContext!.save();// transform 还原
+        this.brushContext!.arc(point.x,point.y,strokeWidth/2,0,Math.PI*2);
+        this.brushContext!.fill();
+        this.brushContext!.restore();
+        this.brushContext!.moveTo(point.x, point.y);
     }
     @Bind
     protected onMouseMove(e: Konva.KonvaEventObject<MouseEvent>) {
@@ -77,23 +78,23 @@ class PencilBrush extends AbsBrush<Konva.Line>{
         const points = this.points;
         const length = points.length;
         if (length > 1) {
-            this.context!.save();// transform 还原
-            this.context!.beginPath();
+            this.brushContext!.save();// transform 还原
+            this.brushContext!.beginPath();
             if (this.oldEnd) {
-                this.context!.moveTo(this.oldEnd.x, this.oldEnd.y);
+                this.brushContext!.moveTo(this.oldEnd.x, this.oldEnd.y);
             }
             this.oldEnd = this._drawSegment( points[length - 2], points[length - 1]);
-            this.context!.stroke();
-            this.context!.restore();
+            this.brushContext!.stroke();
+            this.brushContext!.restore();
         }
     }
     @Bind
     protected onMouseUp(e: Konva.KonvaEventObject<MouseEvent>) {
         super.onMouseUp(e);
         this.oldEnd = undefined;
-        this.context!.closePath();
+        this.brushContext!.closePath();
 
-        const {stroke,strokeWidth} = this.config;
+        const {stroke,strokeWidth} = this.context.config;
         // 如果一个点
         if(this.points.length===1){
             const point = this.points[0];
@@ -121,7 +122,7 @@ class PencilBrush extends AbsBrush<Konva.Line>{
             this.canvas.staticLayer.add(line);
             this.canvas.staticLayer.draw();
         }
-        this.context!.clearRect(0,0,this.canvas.stage.width(),this.canvas.stage.height());
+        this.brushContext!.clearRect(0,0,this.canvas.stage.width(),this.canvas.stage.height());
     }
     @Bind
     private addPoint(point:Konva.Vector2d){
@@ -137,7 +138,7 @@ class PencilBrush extends AbsBrush<Konva.Line>{
     @Bind
     private _drawSegment(p1:Konva.Vector2d, p2:Konva.Vector2d) {
         const midPoint = this.midPointFrom(p1,p2);
-        this.context!.quadraticCurveTo(p1.x, p1.y, midPoint.x, midPoint.y);
+        this.brushContext!.quadraticCurveTo(p1.x, p1.y, midPoint.x, midPoint.y);
         return midPoint;
     }
     @Bind

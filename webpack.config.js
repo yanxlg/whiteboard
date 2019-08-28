@@ -23,25 +23,21 @@ module.exports=function(webpackConfig) {
         use: { loader: 'file',options:{name: 'examples/[hash].[ext]',publicPath:"../"}},
     });*/
 /*    webpackConfig.module.rules.unshift({
-        test: /\S*icon\S*.svg$/,
-        use: { loader: 'url-loader',options:{name: 'examples/[hash].[ext]',publicPath:"../",limit:10000}},
-    });*/
-   /*     webpackConfig.module.rules.unshift({
-            test: /\S*.svg$/,
-            use: { loader: 'raw-loader'},
-        });*/
-    webpackConfig.module.rules.unshift({
         test:/\.worker\.js$/,
         use: { loader: 'worker-loader',options: { name: 'examples/[hash].worker.js',publicPath:"../"}}
-    });
-    webpackConfig.module.rules.push({
+    });*/
+/*    webpackConfig.module.rules.push({
         test: /.pdf$/,
         use: { loader: 'file-loader',options: { name: 'examples/[hash].pdf',publicPath:"../"}}
-    });
-    webpackConfig.module.rules.splice(-9,1);
+    });*/
     webpackConfig.module.rules.unshift({
-         test: /\S*.svg$/,
-         use: { loader: 'raw-loader'},
-     });
+        test: /\S*.svg$/,
+        use: { loader: 'raw-loader'},
+    });
+    webpackConfig.module.rules.unshift({
+        test: /\S*icon\S*.svg$/,
+        loader: 'file',
+    });
+    webpackConfig.module.rules.splice(3,1);// svg-sprite
     return webpackConfig;
 };

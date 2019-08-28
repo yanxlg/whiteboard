@@ -7,7 +7,7 @@
  */
 import {IBrush} from '@/Brushes/AbsBrush';
 import {Canvas} from '@/Canvas';
-import {Config} from '@/Config';
+import {Context} from '@/Context';
 import "@/less/ckeditor.less";
 import html2canvas from "html2canvas";
 import Konva from 'konva';
@@ -28,7 +28,7 @@ import FontColor from '@ckeditor/ckeditor5-font/src/fontcolor';
 
 class TextBrush implements IBrush{
     public cursor:any;
-    public config:Config;
+    public context:Context;
     protected canvas:Canvas;
     private editor?:any;
     private object?:Konva.Image;
@@ -37,8 +37,8 @@ class TextBrush implements IBrush{
     private converting:boolean=false;
     private editBoxMinWidth:number=20;
     private editBoxMinHeight:number=20;
-    constructor(canvas:Canvas, config:Config){
-        this.config=config;
+    constructor(canvas:Canvas, context:Context){
+        this.context=context;
         this.canvas=canvas;
         this.attachEvents();
     }
