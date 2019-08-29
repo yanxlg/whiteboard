@@ -14,6 +14,7 @@ export declare interface IConfig {
     containerWidth:number;
     containerHeight:number;
     color:string;
+    fontSize:number;
     strokeWidth:number;
     selectionColor:string;
     selectionBorderColor:string;
@@ -132,18 +133,19 @@ class Context{
     
     
     private listenerMap:Map<string,Set<(changeAttr:string,attrVal:any,nextConfig:IConfig)=>void> >=new Map();//
-    
     constructor(props:IConfigProps){
         const _config:IConfig={
             color:"#000000",
             containerHeight:props.containerHeight,
             containerWidth:props.containerWidth,
             eraseSize:5,
+            fontSize:14,
             selectionBorderColor:"rgba(255, 255, 255, 0.3)",
             selectionBorderWidth:1,
             selectionColor:"rgba(100, 100, 255, 0.3)",
             shapeType:"hollow_rect",
             strokeWidth:8,
+            tool:"pencil",
             transformerAnchorStroke:"#09ca51",
             transformerAnchorWidth:1,
             transformerBorderStroke:"#09ca51",

@@ -83,7 +83,7 @@
         "classnames": "^2.2.6",
         "core-js": "^2.5.1",
         "jest": "^23.2.0",
-        "open": "^0.0.5",
+        "open": "^6.4.0",
         "yanxlg-rc-tools": "^8.1.8",
         "react": "^16.4.0",
         "react-dom": "^16.4.0",

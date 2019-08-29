@@ -13,10 +13,16 @@ declare interface IShapePopoverProps {
     config:IConfig;
 }
 
-class ShapePopover extends React.PureComponent<IShapePopoverProps>{
+class ShapePopover extends React.Component<IShapePopoverProps>{
+    private currentShapeType?:string;
+    public shouldComponentUpdate(
+        nextProps: Readonly<IShapePopoverProps>, nextState: Readonly<{}>,
+        nextContext: any): boolean {
+        return this.currentShapeType!==nextProps.config.shapeType;
+    }
     public render(){
         const {shapeType} = this.props.config;
-        console.log(shapeType);
+        this.currentShapeType=shapeType;
         return (
             <React.Fragment>
                 <div>

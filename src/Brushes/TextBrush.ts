@@ -116,6 +116,7 @@ class TextBrush implements IBrush{
         div.style.minWidth=`${this.editBoxMinWidth}px`;// 根据字体大小计算
         div.style.minHeight=`${this.editBoxMinHeight}px`;// 根据字体大小计算
         div.style.padding=`${this.labelPadding}px`;
+        const {fontSize,color} = this.context.config;
         const containerRect = this.canvas.stage.getContent().getBoundingClientRect()
         if(target&&target instanceof Konva.Image){
             // 重新计算
@@ -128,6 +129,8 @@ class TextBrush implements IBrush{
             div.style.left=`${position.x+containerRect.left}px`;
             div.style.top=`${position.y+containerRect.top}px`;
             div.innerHTML=target.attrs.content;
+            div.style.fontSize=`${target.attrs.fontSize}px`;
+            div.style.color=target.attrs.fontColor;
             this.object=target;
         }else{
             const pointerPosition = this.canvas.stage.getPointerPosition();
@@ -136,16 +139,25 @@ class TextBrush implements IBrush{
             div.style.maxHeight=`${this.canvas.stage.height()-pointerPosition.y-this.boundPadding}px`;
             div.style.left=`${pointerPosition.x+containerRect.left-this.labelPadding}px`;
             div.style.top=`${pointerPosition.y+containerRect.top-this.labelPadding}px`;
+            div.style.fontSize=`${fontSize}px`;
+            div.style.color=color;
             this.object = new Konva.Image({
                 image:null,
                 x: pointerPosition.x-this.labelPadding,
                 y: pointerPosition.y-this.labelPadding
+            });
+            this.object!.setAttrs({
+                fontColor:color,
+                fontSize: fontSize
             });
         }
         document.body.appendChild(div);
         BalloonEditor.create(div,{
             blockToolbar:[],
             extraPlugins: [FontColor,FontSize],
+            fontSize: {
+                options: [14,18,24,26],
+            },
             removePlugins:["Link","ImageUpload","ImageTextAlternative","ImageTextAlternative","BlockQuote","Ckfinder","Heading","ImageStyle:full","ImageStyle:side","List","MediaEmbed","Table"],
             toolbar: ['bold', 'italic','fontColor',"fontSize"],
         }).then((editor:any)=>{

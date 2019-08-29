@@ -13,7 +13,7 @@ declare interface IToolbarItemProps extends IToolbarItem,IToolbarProps{
     context:Context;
 }
 
-@decoratorFactory("color,tool")
+@decoratorFactory("color,tool,shapeType,fontSize")
 class Item extends React.PureComponent<IToolbarItemProps>{
     public render(){
         const {type,title,component,context} = this.props;
@@ -86,7 +86,7 @@ class Item extends React.PureComponent<IToolbarItemProps>{
     
     private onConfigUpdate(attr:string,value:any,nextConfig:IConfig){
         const type = this.props.type;
-        if(type===INNER_TOOLBAR_ITEM_LIST.Color&&attr==="color"||attr==="tool"){
+        if(type===INNER_TOOLBAR_ITEM_LIST.Color&&attr==="color"||attr==="tool"||attr==="shapeType"&&type===INNER_TOOLBAR_ITEM_LIST.Shape||attr==="fontSize"&&type===INNER_TOOLBAR_ITEM_LIST.Text){
             this.forceUpdate();
         }
     }

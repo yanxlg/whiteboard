@@ -35,7 +35,7 @@ module.exports=function(webpackConfig) {
         use: { loader: 'raw-loader'},
     });
     webpackConfig.module.rules.unshift({
-        test: /\S*icon\S*.svg$/,
+        test: /iconfont.svg$/,
         loader: 'file',
     });
     webpackConfig.module.rules.splice(3,1);// svg-sprite
