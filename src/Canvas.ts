@@ -29,6 +29,7 @@ import {ITool} from '@/Tools/AbsTool';
 import {EraseTool} from '@/Tools/EraseTool';
 import {TransFormTool} from '@/Tools/TransformTool';
 import Konva from "konva";
+import {Bind} from 'lodash-decorators';
 
 
 export declare interface ICanvasSizeProperties{
@@ -95,10 +96,15 @@ class Canvas {
         this.stage.add(this.staticLayer).add(this.brushLayer);
         this.updateTool();
     }
-  
+    @Bind
     public destroy(){
         console.log("-----------------    destroy context listener -------------------");
         console.log("-----------------    destroy canvas    ---------------------");
+    }
+    @Bind
+    public clear(){
+        this.staticLayer.clear();
+        this.brushLayer.clear();
     }
     private updateBrush(){
         const {shapeType} = this.context.config;
@@ -193,7 +199,7 @@ class Canvas {
         }
     }
     private onConfigUpdate(attr:string,value:any,config:IConfig){
-        if(attr==="shapeType"||attr==="tool"){
+        if(attr==="shapeType"||attr==="tool"&&value!=="clear"&&value!=="color"){
             this.updateTool();
         }
     }

@@ -54,6 +54,10 @@ class Page {
             });
         }
     }
+    @Bind
+    public clear(){
+        this.canvas!.clear();
+    }
     private getCanvasProperties(width:number,height:number){
         const imageRatio = height/width;
         const originWidth = this.context.config.containerWidth;

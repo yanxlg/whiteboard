@@ -2,41 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="188e418a-7998-445e-ac5e-666d46e58b9e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/cursor/Cursor.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/alternate.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/cross.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/cursor.less" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/default.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/erase.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/ferule.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/hand.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/help.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/horz.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/move.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/nesw-resize.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/not-allowed.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/nwse-resize.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/pointer.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/text.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/vert.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/wait.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cursor/work.cur" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/IDGenerator.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/examples/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Brushes/AbsBrush.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Brushes/AbsBrush.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Brushes/LineBrush.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Brushes/LineBrush.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Brushes/PencilBrush.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Brushes/PencilBrush.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Brushes/RectBrush.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Brushes/RectBrush.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Brushes/SquareBrush.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Brushes/SquareBrush.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Brushes/TextBrush.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Brushes/TextBrush.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Canvas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Canvas.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Context.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Context.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TabBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/TabBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/toolbar/Item.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/toolbar/Item.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/toolbar/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/toolbar/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Page.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Page.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/less/toolbar.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/less/toolbar.less" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -49,35 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/toolbar/Item.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="811">
-              <caret line="85" column="5" lean-forward="true" selection-start-line="85" selection-start-column="5" selection-end-line="85" selection-end-column="5" />
-              <folding>
-                <element signature="e#78#139#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Brushes/RectBrush.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
-              <folding>
-                <element signature="e#226#276#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Brushes/PencilBrush.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="24" column="50" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="50" />
+            <state relative-caret-position="559">
+              <caret line="117" column="41" lean-forward="true" selection-start-line="117" selection-start-column="41" selection-end-line="117" selection-end-column="41" />
               <folding>
                 <element signature="e#195#239#0" expanded="true" />
               </folding>
@@ -86,35 +33,51 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Brushes/RegularPolygonBrush.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-              <folding>
-                <element signature="e#194#238#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Canvas.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="599">
-              <caret line="122" column="43" lean-forward="true" selection-start-line="122" selection-start-column="43" selection-end-line="122" selection-end-column="43" />
+            <state relative-caret-position="711">
+              <caret line="204" column="5" lean-forward="true" selection-start-line="204" selection-start-column="5" selection-end-line="204" selection-end-column="5" />
               <folding>
                 <element signature="e#618#660#0" expanded="true" />
-                <element signature="n#!!block;n#constructor#0;n#Canvas#0" />
+                <element signature="n#!!block;n#updateBrush#0;n#Canvas#0" />
+                <element signature="n#!!block;n#updateTool#0;n#Canvas#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Brushes/RingBrush.ts">
+        <entry file="file://$PROJECT_DIR$/src/less/toolbar.less">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+            <state relative-caret-position="437">
+              <caret line="26" column="49" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/konva/konva.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="13043" column="60" selection-start-line="13043" selection-start-column="60" selection-end-line="13043" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/konva/lib/shapes/Line.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="77" column="19" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="76" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Brushes/LineBrush.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="361">
+              <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
               <folding>
                 <element signature="e#191#235#0" expanded="true" />
               </folding>
@@ -123,49 +86,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Brushes/SquareBrush.ts">
+        <entry file="file://$PROJECT_DIR$/node_modules/konva/lib/Util.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="37" />
-              <folding>
-                <element signature="e#193#237#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="216">
+              <caret line="89" column="10" selection-start-line="89" selection-start-column="10" selection-end-line="89" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Brushes/StarBrush.ts">
+        <entry file="file://$PROJECT_DIR$/node_modules/konva/types/index-types.d.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-              <folding>
-                <element signature="e#191#235#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="266">
+              <caret line="38" column="46" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Brushes/WedgeBrush.ts">
+        <entry file="file://$PROJECT_DIR$/node_modules/konva/types/types.d.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="608">
-              <caret line="32" column="36" lean-forward="true" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
-              <folding>
-                <element signature="e#192#236#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/toolbar/popover/shapePopover.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="54" column="50" lean-forward="true" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
-              <folding>
-                <element signature="e#79#113#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="76">
+              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -184,12 +126,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>memo-store</find>
-      <find>nodes.memos</find>
-      <find>memo_store</find>
-      <find>noResize</find>
-      <find>store</find>
-      <find>reset</find>
       <find>actionCallback</find>
       <find>self.config</find>
       <find>listenerMap</find>
@@ -214,6 +150,12 @@
       <find>pageId</find>
       <find>cursor</find>
       <find>shiftKey</find>
+      <find>tension</find>
+      <find>quadraticCurveTo</find>
+      <find>getTensionPoints</find>
+      <find>push</find>
+      <find>L</find>
+      <find>points</find>
     </findStrings>
     <replaceStrings>
       <replace>konvajs-toolbar-item</replace>
@@ -241,24 +183,20 @@
         <option value="$PROJECT_DIR$/src/toolbar/tooltip.tsx" />
         <option value="$PROJECT_DIR$/src/ConfigFactory.tsx" />
         <option value="$PROJECT_DIR$/src/Config.ts" />
-        <option value="$PROJECT_DIR$/src/Page.ts" />
         <option value="$PROJECT_DIR$/src/Tools/AbsTool.ts" />
         <option value="$PROJECT_DIR$/src/Tools/EraseTool.ts" />
         <option value="$PROJECT_DIR$/src/toolbar/popover/testPopover.tsx" />
         <option value="$PROJECT_DIR$/src/toolbar/popover.tsx" />
         <option value="$PROJECT_DIR$/src/toolbar/popover/colorPopover.tsx" />
         <option value="$PROJECT_DIR$/src/Tools/TransformTool.ts" />
-        <option value="$PROJECT_DIR$/src/less/toolbar.less" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/test.js" />
         <option value="$PROJECT_DIR$/src/toolbar/popover/shapePopover.tsx" />
         <option value="$PROJECT_DIR$/src/toolbar/popover/textPopover.tsx" />
         <option value="$PROJECT_DIR$/node_modules/@ckeditor/ckeditor5-build-balloon-block/build/ckeditor.js" />
         <option value="$PROJECT_DIR$/src/toolbar/Item.tsx" />
-        <option value="$PROJECT_DIR$/src/Canvas.ts" />
         <option value="$PROJECT_DIR$/src/toolbar/index.tsx" />
         <option value="$PROJECT_DIR$/src/utils/IDGenerator.ts" />
-        <option value="$PROJECT_DIR$/src/Context.ts" />
         <option value="$PROJECT_DIR$/examples/index.tsx" />
         <option value="$PROJECT_DIR$/src/index.ts" />
         <option value="$PROJECT_DIR$/src/TabBar.tsx" />
@@ -271,13 +209,17 @@
         <option value="$PROJECT_DIR$/src/Brushes/CircleBrush.ts" />
         <option value="$PROJECT_DIR$/src/Brushes/EllipseBrush.ts" />
         <option value="$PROJECT_DIR$/src/Brushes/LineBrush.ts" />
-        <option value="$PROJECT_DIR$/src/Brushes/PencilBrush.ts" />
         <option value="$PROJECT_DIR$/src/Brushes/RegularPolygonBrush.ts" />
         <option value="$PROJECT_DIR$/src/Brushes/RingBrush.ts" />
         <option value="$PROJECT_DIR$/src/Brushes/StarBrush.ts" />
         <option value="$PROJECT_DIR$/src/Brushes/WedgeBrush.ts" />
         <option value="$PROJECT_DIR$/src/Brushes/SquareBrush.ts" />
         <option value="$PROJECT_DIR$/src/Brushes/RectBrush.ts" />
+        <option value="$PROJECT_DIR$/src/Page.ts" />
+        <option value="$PROJECT_DIR$/src/Context.ts" />
+        <option value="$PROJECT_DIR$/src/Canvas.ts" />
+        <option value="$PROJECT_DIR$/src/less/toolbar.less" />
+        <option value="$PROJECT_DIR$/src/Brushes/PencilBrush.ts" />
       </list>
     </option>
   </component>
@@ -323,14 +265,13 @@
               <item name="whiteboard" type="b2602c69:ProjectViewProjectNode" />
               <item name="whiteboard" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="toolbar" type="462c0819:PsiDirectoryNode" />
+              <item name="less" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="whiteboard" type="b2602c69:ProjectViewProjectNode" />
               <item name="whiteboard" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="toolbar" type="462c0819:PsiDirectoryNode" />
-              <item name="popover" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -416,12 +357,12 @@
       <workItem from="1567057221368" duration="13369000" />
       <workItem from="1567085072033" duration="348000" />
       <workItem from="1567085550828" duration="11000" />
-      <workItem from="1567385993719" duration="7913000" />
+      <workItem from="1567385993719" duration="13096000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="292606000" />
+    <option name="totallyTimeSpent" value="297789000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -495,61 +436,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Tools/AbsTool.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
-          <folding>
-            <element signature="e#196#228#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Tools/TransformTool.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="92" column="5" selection-start-line="92" selection-start-column="5" selection-end-line="92" selection-end-column="5" />
-          <folding>
-            <element signature="e#251#283#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/toolbar/popover.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="29" column="21" lean-forward="true" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
-          <folding>
-            <element signature="e#76#110#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/toolbar/popover/colorPopover.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="635">
-          <caret line="47" column="39" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="39" />
-          <folding>
-            <element signature="e#79#121#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/less/toolbar.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/open/lib/open.js" />
-    <entry file="file://$PROJECT_DIR$/node_modules/@types/node/child_process.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/open/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -623,13 +509,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/konva/types/index-types.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="103" column="56" selection-start-line="103" selection-start-column="56" selection-end-line="103" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/konva/types/shapes/Image.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -679,19 +558,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Context.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="184" selection-start-line="184" selection-end-line="184" />
-          <folding>
-            <element signature="e#191#228#0" expanded="true" />
-            <element signature="n#!!block;n#constructor#0;n#Context#0" />
-            <element signature="n#!!block;n#addListener#0;n#Context#0" />
-            <element signature="n#!!block;n#removeListener#0;n#Context#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
@@ -719,23 +585,6 @@
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Page.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="35" column="35" lean-forward="true" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
-          <folding>
-            <element signature="e#215#270#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/konva/konva.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6301">
-          <caret line="13043" column="60" lean-forward="true" selection-start-line="13043" selection-start-column="60" selection-end-line="13043" selection-end-column="60" />
         </state>
       </provider>
     </entry>
@@ -818,16 +667,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Brushes/LineBrush.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="26" lean-forward="true" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-          <folding>
-            <element signature="e#191#235#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Brushes/RegularPolygonBrush.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -888,27 +727,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Canvas.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
-          <caret line="122" column="43" lean-forward="true" selection-start-line="122" selection-start-column="43" selection-end-line="122" selection-end-column="43" />
-          <folding>
-            <element signature="e#618#660#0" expanded="true" />
-            <element signature="n#!!block;n#constructor#0;n#Canvas#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Brushes/PencilBrush.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="24" column="50" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="50" />
-          <folding>
-            <element signature="e#195#239#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Brushes/SquareBrush.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -921,10 +739,129 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Brushes/RectBrush.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+        <state relative-caret-position="513">
+          <caret line="27" column="31" lean-forward="true" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
           <folding>
             <element signature="e#226#276#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Page.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="692">
+          <caret line="57" column="16" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="16" />
+          <folding>
+            <element signature="e#215#270#0" expanded="true" />
+            <element signature="n#!!block;n#getCanvasProperties#0;n#Page#0" />
+            <element signature="n#!!block;n#getCanvasSize#0;n#Page#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Context.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="181" column="38" lean-forward="true" selection-start-line="181" selection-start-column="38" selection-end-line="181" selection-end-column="38" />
+          <folding>
+            <element signature="e#191#228#0" expanded="true" />
+            <element signature="n#!!block;n#addListener#0;n#Context#0" />
+            <element signature="n#!!block;n#removeListener#0;n#Context#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Canvas.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="711">
+          <caret line="204" column="5" lean-forward="true" selection-start-line="204" selection-start-column="5" selection-end-line="204" selection-end-column="5" />
+          <folding>
+            <element signature="e#618#660#0" expanded="true" />
+            <element signature="n#!!block;n#updateBrush#0;n#Canvas#0" />
+            <element signature="n#!!block;n#updateTool#0;n#Canvas#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/less/toolbar.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="26" column="49" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/konva/konva.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="13043" column="60" selection-start-line="13043" selection-start-column="60" selection-end-line="13043" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Brushes/LineBrush.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="e#191#235#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/konva/lib/shapes/Line.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="77" column="19" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/konva/lib/shapes/Path.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="294" column="27" selection-start-line="294" selection-start-column="23" selection-end-line="294" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/konva/lib/Context.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="25" column="27" lean-forward="true" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/konva/lib/Shape.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="19" column="35" lean-forward="true" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/konva/lib/Util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="89" column="10" selection-start-line="89" selection-start-column="10" selection-end-line="89" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/konva/types/index-types.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="38" column="46" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/konva/types/types.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Brushes/PencilBrush.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="559">
+          <caret line="117" column="41" lean-forward="true" selection-start-line="117" selection-start-column="41" selection-end-line="117" selection-end-column="41" />
+          <folding>
+            <element signature="e#195#239#0" expanded="true" />
           </folding>
         </state>
       </provider>

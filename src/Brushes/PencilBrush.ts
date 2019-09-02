@@ -12,7 +12,7 @@ import {Cursor} from '@/cursor/Cursor';
 import Konva from 'konva';
 import {Bind} from 'lodash-decorators';
 
-class PencilBrush extends AbsBrush<Konva.Line>{
+class PencilBrush extends AbsBrush<Konva.Path>{
     public cursor:Cursor=Cursor.hand;
     private brushContext?:CanvasRenderingContext2D;
     private points:Konva.Vector2d[];
@@ -115,17 +115,12 @@ class PencilBrush extends AbsBrush<Konva.Line>{
             this.canvas.staticLayer.add(circle);
             this.canvas.staticLayer.draw();
         }else{
-            const _points:number[]=[];
-            this.points.forEach((point)=>{
-                _points.push(point.x,point.y);
-            });
-            const line = new Konva.Line({
-                lineCap: 'round',
-                lineJoin: 'round',
-                points:_points,
+            const line = new Konva.Path({
+                data:this.convertPointsToSVGPath().join(""),
+                lineCap:"round",
+                lineJoin:"round",
                 stroke: color,
                 strokeWidth: strokeWidth,
-                tension: this.tension
             });
             this.canvas.staticLayer.add(line);
             this.canvas.staticLayer.draw();
@@ -156,6 +151,43 @@ class PencilBrush extends AbsBrush<Konva.Line>{
             x:from.x+(to.x - from.x) * t,
             y:from.y + (to.y - from.y) * t
         }
+    }
+    private convertPointsToSVGPath() {
+        const points = this.points;
+        const path=[];
+        let i;
+        const width = this.context.config.strokeWidth;
+        let p1 = points[0];
+        let p2=points[1];
+        const len = points.length;
+        let multSignX = 1;
+        let multSignY = 1;
+        const manyPoints = len > 2;
+        
+        if (manyPoints) {
+            multSignX = points[2].x < p2.x ? -1 : points[2].x === p2.x ? 0 : 1;
+            multSignY = points[2].y < p2.y ? -1 : points[2].y === p2.y ? 0 : 1;
+        }
+        path.push('M ', p1.x - multSignX * width, ' ', p1.y - multSignY * width, ' ');
+        for (i = 1; i < len; i++) {
+            if (!(p1.x===p2.x&&p1.y===p2.y)) {
+                const midPoint = this.midPointFrom(p1,p2);
+                // p1 is our bezier control point
+                // midpoint is our endpoint
+                // start point is p(i-1) value.
+                path.push('Q ', p1.x, ' ', p1.y, ' ', midPoint.x, ' ', midPoint.y, ' ');
+            }
+            p1 = points[i];
+            if ((i + 1) < points.length) {
+                p2 = points[i + 1];
+            }
+        }
+        if (manyPoints) {
+            multSignX = p1.x > points[i - 2].x ? 1 : p1.x === points[i - 2].x ? 0 : -1;
+            multSignY = p1.y > points[i - 2].y ? 1 : p1.y === points[i - 2].y ? 0 : -1;
+        }
+        path.push('L ', p1.x + multSignX * width, ' ', p1.y + multSignY * width);
+        return path;
     }
 }
 

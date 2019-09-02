@@ -165,9 +165,14 @@ class Context{
             },
             set(target: IConfig, p: string, value: any, receiver: any): boolean {
                 // some tool dismiss active state
-                const result = p==="tool"&&value==="clear"?false:Reflect.set(target, p, value, receiver);
+                const result = p==="tool"&&value==="clear"?true:Reflect.set(target, p, value, receiver);
                 if(p==="tool"&&value==="clear"){
-                    alert("clear");
+                    const {tabNumber,tabs} = self.config;
+                    const page = tabNumber?tabs.find(tab=>tab.wbNumber===tabNumber):undefined;
+                    if(page&&page.pageInstance){
+                        // pageInstance.
+                        page.pageInstance.clear();
+                    }
                 }
                 
                 
