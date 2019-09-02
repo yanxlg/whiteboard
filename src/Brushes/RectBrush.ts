@@ -10,6 +10,7 @@ import {SquareBrush} from '@/Brushes/SquareBrush';
 import {Bind} from 'lodash-decorators';
 
 class RectBrush extends SquareBrush{
+    protected _shiftKey:boolean=false;
     protected attachEvents(){
         super.attachEvents();
         document.addEventListener("keydown",this.onKeyDown);

@@ -5,6 +5,8 @@
  * @author:yanxinaliang
  * @time：2019/8/23 11:52
  */
+import {Context, decoratorFactory, IConfig} from '@/Context';
+import {Page} from '@/Page';
 import {Tabs} from 'element-react';
 import 'element-theme-default';
 import {Bind} from 'lodash-decorators';
@@ -18,45 +20,38 @@ export declare interface ITabBarItem {
     wbNumber:string;
     closable?:boolean;
     disabled?:boolean;
+    pageInstance?:Page
 }
 
 export declare interface ITabBarState {
     tabs:ITabBarItem[];
-    pageWbNumber?:string;
+    tabNumber?:string;
 }
 
 export declare interface ITabBarProps {
-    onTabAdd:(component:TabBar)=>ITabBarState;
-    onTabRemove:(rmWbNumber:string,activeWbNumber:string|undefined,component:TabBar)=>ITabBarState;
-    onTabClick:(wbNumber:string,component:TabBar)=>void;
+    context:Context;
+    openNewPage:()=>void;
 }
 
 
+@decoratorFactory("tabs,tabNumber")
 class TabBar extends React.PureComponent<ITabBarProps,ITabBarState>{
     private tabBarRef: RefObject<Tabs>=React.createRef();
     constructor(props:ITabBarProps) {
         super(props);
         this.state={
-            tabs:[]
+            tabNumber:props.context.config.tabNumber,
+            tabs:props.context.config.tabs
         };
     }
-    
-    @Bind
-    public updateTabList(tabs:ITabBarItem[],pageWbNumber?:string){
-        this.setState((state)=>{
-            return {
-                pageWbNumber:pageWbNumber||state.pageWbNumber,
-                tabs
-            }
-        },()=>{
-            // @ts-ignore
-            this.tabBarRef.current!.scrollToActiveTab();// fix active Tab position
-        });
+   
+    public componentWillUnmount(): void {
+        // clear
     }
     public render() {
-        const {pageWbNumber="none",tabs} = this.state;
+        const {tabNumber="none",tabs} = this.state;
         return (
-            <Tabs ref={this.tabBarRef} type="border-card" value={pageWbNumber} className="konvajs-tabs" editable={true} onTabEdit={this.editTab} onTabClick={this.onTabClick}>
+            <Tabs ref={this.tabBarRef} type="border-card" value={tabNumber} className="konvajs-tabs" editable={true} onTabEdit={this.editTab} onTabClick={this.onTabClick}>
                 {
                     tabs.map((item) => {
                         const {closable=true,disabled=false,label,wbNumber} = item;
@@ -66,22 +61,31 @@ class TabBar extends React.PureComponent<ITabBarProps,ITabBarState>{
             </Tabs>
         )
     }
+    private onConfigUpdate(attr:string,value:any,nextConfig:IConfig){
+        this.setState({
+            tabNumber:nextConfig.tabNumber,
+            tabs:nextConfig.tabs
+        },()=>{
+            // @ts-ignore
+            this.tabBarRef.current!.scrollToActiveTab();// fix active Tab position
+        });
+    }
     @Bind
     private editTab(action:"add"|"remove", tabItem:any) {
         if (action === 'add') {
-            // 创建一个tab
-            const result = this.props.onTabAdd(this);
-            this.updateTabList(result.tabs,result.pageWbNumber);
+            this.props.openNewPage();
         }
         if (action === 'remove') {
             const nextPageWbNumber=tabItem._owner.child.memoizedState.currentName;
-            const result = this.props.onTabRemove(tabItem.props.name,nextPageWbNumber,this);
-            this.updateTabList(result.tabs,result.pageWbNumber);
+            this.props.context.config.tabs=this.props.context.config.tabs.filter((tab)=>{
+                return tab.wbNumber!==tabItem.props.name
+            });
+            this.props.context.config.tabNumber=nextPageWbNumber;
         }
     }
     @Bind
     private onTabClick(tabItem:TabsPane){
-        this.props.onTabClick(tabItem.props.name!,this);
+        this.props.context.config.tabNumber=tabItem.props.name!;
     }
 }
 

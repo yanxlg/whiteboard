@@ -8,10 +8,12 @@
 import {AbsBrush} from '@/Brushes/AbsBrush';
 import {Canvas} from '@/Canvas';
 import {Context} from '@/Context';
+import {Cursor} from '@/cursor/Cursor';
 import Konva from 'konva';
 import {Bind} from 'lodash-decorators';
 
 class PencilBrush extends AbsBrush<Konva.Line>{
+    public cursor:Cursor=Cursor.hand;
     private brushContext?:CanvasRenderingContext2D;
     private points:Konva.Vector2d[];
     private oldEnd?:Konva.Vector2d;
@@ -28,7 +30,8 @@ class PencilBrush extends AbsBrush<Konva.Line>{
             lineJoin:this.brushContext.lineJoin,
             lineWidth:this.brushContext.lineWidth,
             strokeStyle:this.brushContext.strokeStyle
-        }
+        };
+        canvas.stage.content.style.cursor = this.cursor as string;
     }
     @Bind
     public destroy(): void {
@@ -41,6 +44,7 @@ class PencilBrush extends AbsBrush<Konva.Line>{
             this.brushContext!.fillStyle=this.originStyle.fillStyle;
         }
         this.brushContext=undefined;
+        this.canvas.stage.content.style.cursor = Cursor.default as string;
     }
     protected getObject():any{
         return undefined;

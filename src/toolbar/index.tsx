@@ -34,37 +34,19 @@ export declare interface IToolbarItem {
 }
 
 
-declare interface IToolbarState {
-    items:IToolbarItem[];
-    context?:Context;
-}
-
 export declare interface IToolbarProps {
-    onItemClick:(item:IToolbarItem)=>void;
+    context:Context;
 }
 
 
 
-class Toolbar extends React.PureComponent<IToolbarProps,IToolbarState>{
-    constructor(props:IToolbarProps){
-        super(props);
-        this.state={
-            items:[]
-        }
-    }
-    @Bind
-    public initItems(items:IToolbarItem[],context:Context){
-        this.setState({
-            context:context,
-            items:items
-        });
-    }
+class Toolbar extends React.PureComponent<IToolbarProps>{
     public render(){
-        const {items,context} = this.state;
+        const {context} = this.props;
         return (
             <ul className="konvajs-toolbar">
                 {
-                    items.map((item)=>{
+                    context.toolbarInnerItems.map((item)=>{
                         return (
                             <Item key={item.type} {...item} context={context!} onItemClick={this.onItemClick}/>
                         )
@@ -75,8 +57,29 @@ class Toolbar extends React.PureComponent<IToolbarProps,IToolbarState>{
     }
     @Bind
     private onItemClick(item:IToolbarItem){
-        this.props.onItemClick(item);
-        // highlight
+        switch (item.type) {
+            case INNER_TOOLBAR_ITEM_LIST.Selection:
+                this.props.context.config.tool="selection";
+                break;
+            case INNER_TOOLBAR_ITEM_LIST.Pencil:
+                this.props.context.config.tool="pencil";
+                break;
+            case INNER_TOOLBAR_ITEM_LIST.Text:
+                this.props.context.config.tool="text";
+                break;
+            case INNER_TOOLBAR_ITEM_LIST.Shape:
+                this.props.context.config.tool="shape";
+                break;
+            case INNER_TOOLBAR_ITEM_LIST.Erase:
+                this.props.context.config.tool="erase";
+                break;
+            case INNER_TOOLBAR_ITEM_LIST.Ferule:
+                this.props.context.config.tool="ferule";
+                break;
+            case INNER_TOOLBAR_ITEM_LIST.Clear:
+                this.props.context.config.tool="clear";
+                break;
+        }
     }
 }
 

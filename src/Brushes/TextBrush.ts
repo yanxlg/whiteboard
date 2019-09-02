@@ -8,6 +8,7 @@
 import {IBrush} from '@/Brushes/AbsBrush';
 import {Canvas} from '@/Canvas';
 import {Context} from '@/Context';
+import {Cursor} from '@/cursor/Cursor';
 import "@/less/ckeditor.less";
 import html2canvas from "html2canvas";
 import Konva from 'konva';
@@ -26,8 +27,9 @@ import FontColor from '@ckeditor/ckeditor5-font/src/fontcolor';
 
 
 
+
 class TextBrush implements IBrush{
-    public cursor:any;
+    public cursor:Cursor=Cursor.text;
     public context:Context;
     protected canvas:Canvas;
     private editor?:any;
@@ -41,6 +43,7 @@ class TextBrush implements IBrush{
         this.context=context;
         this.canvas=canvas;
         this.attachEvents();
+        canvas.stage.content.style.cursor=this.cursor as string;
     }
     public destroy():void{
         this.detachEvents();
@@ -48,6 +51,7 @@ class TextBrush implements IBrush{
             const container = this.editor.editing.view.getDomRoot();
             this.updateObject(container);
         }
+        this.canvas.stage.content.style.cursor=Cursor.default as string;
     };
     
     protected attachEvents(){

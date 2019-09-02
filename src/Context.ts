@@ -8,6 +8,8 @@
 import {ITabBarItem} from '@/TabBar';
 import {INNER_TOOLBAR_ITEM_LIST, IToolbarItem} from '@/Toolbar';
 import {Bind} from 'lodash-decorators';
+import {IDGenerator} from '@/utils/IDGenerator';
+import {Page} from '@/Page';
 
 
 export declare interface IConfig {
@@ -24,8 +26,10 @@ export declare interface IConfig {
     transformerAnchorStroke:string;
     transformerAnchorWidth:number;
     eraseSize:number;
-    tool?:"selection"|"pencil"|"text"|"shape"|"erase"|"ferule";
+    tool?:"selection"|"pencil"|"text"|"shape"|"erase"|"ferule"|string;
     shapeType:"arrow"|"line"|"circle"|"hollow_circle"|"triangle"|"hollow_triangle"|"rect"|"hollow_rect"|"square"|"hollow_square"|"ellipse"|"hollow_ellipse"|"wedge"|"hollow_wedge"|"star"|"hollow_star"|"ring"|"hollow_ring"|"arc"|"hollow_arc"|"polygon"|"hollow_polygon"
+    tabs:ITabBarItem[];
+    tabNumber:string;
 }
 
 
@@ -96,9 +100,10 @@ class Context{
     public static mouseUpEvents="mouseup touchend pointerup";
     public static mouseOutEvents="mouseleave touchcancel pointerleave";
     
+    public static emptyLabel="白板";
+    
     public config: IConfig;
-    public pageMap:Map<string,ITabBarItem>=new Map();
-    public pageWbNumber?:string;
+    
     public readonly toolbarInnerItems:IToolbarItem[]=[{
         title:"选择",
         type:INNER_TOOLBAR_ITEM_LIST.Selection
@@ -144,7 +149,9 @@ class Context{
             selectionBorderWidth:1,
             selectionColor:"rgba(100, 100, 255, 0.3)",
             shapeType:"hollow_rect",
-            strokeWidth:8,
+            strokeWidth:1,
+            tabNumber:"-1",
+            tabs:[],
             tool:"pencil",
             transformerAnchorStroke:"#09ca51",
             transformerAnchorWidth:1,
@@ -157,7 +164,13 @@ class Context{
                 return Reflect.get(target, p, receiver);
             },
             set(target: IConfig, p: string, value: any, receiver: any): boolean {
-                const result = Reflect.set(target, p, value, receiver);
+                // some tool dismiss active state
+                const result = p==="tool"&&value==="clear"?false:Reflect.set(target, p, value, receiver);
+                if(p==="tool"&&value==="clear"){
+                    alert("clear");
+                }
+                
+                
                 // trigger listener
                 const listerSet=self.listenerMap.get(p);
                 if(listerSet){
@@ -169,7 +182,6 @@ class Context{
             }
         });
     }
-   
     @Bind
     private addListener(attr:string,listener:(changeAttr:string,attrVal:any,nextConfig:IConfig)=>void){
         if(!this.listenerMap.has(attr)){
@@ -183,6 +195,9 @@ class Context{
             this.listenerMap.get(attr)!.delete(listener);
         }
     }
+    
+    
+    
 }
 
 export {Context}

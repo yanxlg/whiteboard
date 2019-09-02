@@ -94,14 +94,6 @@ class Canvas {
     
         this.stage.add(this.staticLayer).add(this.brushLayer);
         this.updateTool();
-        const circle=new Konva.Circle({
-            fill:"red",
-            radius:50,
-            x: 50,
-            y: 50
-        });
-        this.staticLayer.add(circle);
-        this.stage.draw();
     }
   
     public destroy(){

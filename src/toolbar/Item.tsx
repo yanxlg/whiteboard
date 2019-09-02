@@ -11,6 +11,7 @@ import React from 'react';
 
 declare interface IToolbarItemProps extends IToolbarItem,IToolbarProps{
     context:Context;
+    onItemClick:(item:IToolbarItem)=>void;
 }
 
 @decoratorFactory("color,tool,shapeType,fontSize")

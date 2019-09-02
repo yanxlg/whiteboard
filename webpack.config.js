@@ -38,6 +38,10 @@ module.exports=function(webpackConfig) {
         test: /iconfont.svg$/,
         loader: 'file',
     });
+    webpackConfig.module.rules.push({
+        test: /.cur$/,
+        use: { loader: 'file-loader',options: { name: 'examples/[hash].pdf',publicPath:"../"}}
+    });
     webpackConfig.module.rules.splice(3,1);// svg-sprite
     return webpackConfig;
 };

@@ -9,7 +9,7 @@ import {AbsBrush} from '@/Brushes/AbsBrush';
 import Konva from 'konva';
 
 class SquareBrush extends AbsBrush<Konva.Rect>{
-    private _shiftKey:boolean=true;
+    protected _shiftKey:boolean=true;
     protected get shiftKey(): boolean {
         return this._shiftKey;
     }
@@ -63,7 +63,7 @@ class SquareBrush extends AbsBrush<Konva.Rect>{
                 height=height>0?absWidth:-absWidth;
             }
         }
-        
+        console.log(width,height);
         this.object!.width(width);
         this.object!.height(height);
         this.canvas.brushLayer.draw();

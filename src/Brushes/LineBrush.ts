@@ -9,7 +9,6 @@ import {AbsBrush} from '@/Brushes/AbsBrush';
 import Konva from 'konva';
 
 class LineBrush extends AbsBrush<Konva.Line>{
-    
     protected getObject(){
         const {color,strokeWidth} = this.context.config;
         return new Konva.Line({

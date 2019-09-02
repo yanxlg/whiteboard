@@ -7,6 +7,7 @@
  */
 import {Canvas} from '@/Canvas';
 import {Context} from '@/Context';
+import {Cursor} from '@/cursor/Cursor';
 import Konva from 'konva';
 import {Bind} from 'lodash-decorators';
 
@@ -17,7 +18,7 @@ export interface IBrush{
 
 
 abstract class AbsBrush<T extends Konva.Shape> implements IBrush{
-    public cursor:any;
+    public cursor:Cursor=Cursor.cross;
     public context:Context;
     protected canvas:Canvas;
     protected object?:T;
@@ -29,12 +30,14 @@ abstract class AbsBrush<T extends Konva.Shape> implements IBrush{
         this.canvas=canvas;
         this.hollowState=isHollow;
         this.attachEvents();
+        canvas.stage.content.style.cursor=this.cursor as string;
     }
     public destroy():void{
         this.detachEvents();
         this.object=undefined;
         this.start=undefined;
         this.end=undefined;
+        this.canvas.stage.content.style.cursor=Cursor.default as string;
     };
     protected abstract updateObject():void;
     protected abstract getObject():T;
