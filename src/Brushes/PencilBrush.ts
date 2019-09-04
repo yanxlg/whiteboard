@@ -114,7 +114,7 @@ class PencilBrush extends AbsBrush<Konva.Path>{
             });
             this.canvas.staticLayer.add(circle);
             this.canvas.staticLayer.draw();
-        }else{
+        }else if(this.points.length>1){
             const line = new Konva.Path({
                 data:this.convertPointsToSVGPath().join(""),
                 lineCap:"round",
@@ -125,7 +125,8 @@ class PencilBrush extends AbsBrush<Konva.Path>{
             this.canvas.staticLayer.add(line);
             this.canvas.staticLayer.draw();
         }
-        this.brushContext!.clearRect(0,0,this.canvas.stage.width(),this.canvas.stage.height());
+        this.canvas.brushLayer.destroyChildren();
+        this.canvas.brushLayer.clear();
     }
     @Bind
     private addPoint(point:Konva.Vector2d){

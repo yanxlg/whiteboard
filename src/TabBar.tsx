@@ -31,6 +31,7 @@ export declare interface ITabBarState {
 export declare interface ITabBarProps {
     context:Context;
     openNewPage:()=>void;
+    reOpenPage:(wbNumber:string)=>void;
 }
 
 
@@ -80,11 +81,13 @@ class TabBar extends React.PureComponent<ITabBarProps,ITabBarState>{
             this.props.context.config.tabs=this.props.context.config.tabs.filter((tab)=>{
                 return tab.wbNumber!==tabItem.props.name
             });
+            this.props.reOpenPage(nextPageWbNumber);
             this.props.context.config.tabNumber=nextPageWbNumber;
         }
     }
     @Bind
     private onTabClick(tabItem:TabsPane){
+        this.props.reOpenPage(tabItem.props.name!);
         this.props.context.config.tabNumber=tabItem.props.name!;
     }
 }

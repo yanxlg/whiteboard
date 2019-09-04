@@ -52,7 +52,7 @@ export declare interface ICanvasSizeProperties{
 Konva.hitOnDragEnabled = true;
 
 
-@decoratorFactory("tool,shapeType")
+@decoratorFactory("tool,shapeType,containerHeight,containerWidth")
 class Canvas {
     public stage:Konva.Stage;
     public backgroundLayer?:Konva.FastLayer;
@@ -67,9 +67,11 @@ class Canvas {
             height:properties.contentHeight,
             width:properties.contentWidth
         });
+        
+        this.stage.content.style.backgroundColor=Context.contentBg;
+        
         this.staticLayer=new Konva.Layer();
         this.brushLayer=new Konva.Layer();
-        
         const {bgImage,bgSize} = properties;
         if(bgImage){
             this.backgroundLayer=new Konva.FastLayer();
@@ -92,7 +94,6 @@ class Canvas {
                 })
             }
         }
-    
         this.stage.add(this.staticLayer).add(this.brushLayer);
         this.updateTool();
     }
@@ -103,6 +104,8 @@ class Canvas {
     }
     @Bind
     public clear(){
+        this.staticLayer.destroyChildren();
+        this.brushLayer.destroyChildren();
         this.staticLayer.clear();
         this.brushLayer.clear();
     }
@@ -201,6 +204,11 @@ class Canvas {
     private onConfigUpdate(attr:string,value:any,config:IConfig){
         if(attr==="shapeType"||attr==="tool"&&value!=="clear"&&value!=="color"){
             this.updateTool();
+        }else if(attr==="containerHeight"||attr==="containerWidth"){
+            this.stage.size({
+                height:this.context.config.containerHeight,
+                width:this.context.config.containerWidth
+            })
         }
     }
 }

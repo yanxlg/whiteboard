@@ -25,7 +25,7 @@ class Test extends React.Component{
     public render(){
         return (
             <React.Fragment>
-                <TabBar context={this.whiteBoard.context} openNewPage={this.whiteBoard.openNewPage}/>
+                <TabBar context={this.whiteBoard.context} openNewPage={this.whiteBoard.openNewPage} reOpenPage={this.whiteBoard.reOpenPage}/>
                 <Toolbar ref={this.toolBarRef} context={this.whiteBoard.context}/>
                 <div style={{width:"100%",height:800,position:"relative"}} ref={this.ref}/>
             </React.Fragment>

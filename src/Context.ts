@@ -101,6 +101,9 @@ class Context{
     public static mouseOutEvents="mouseleave touchcancel pointerleave";
     
     public static emptyLabel="白板";
+    public static containerBg="#f4f4f4";
+    public static contentBg="#ffffff";
+    public static offsetRatio=4/3;// 内容宽高比例
     
     public config: IConfig;
     
@@ -174,8 +177,6 @@ class Context{
                         page.pageInstance.clear();
                     }
                 }
-                
-                
                 // trigger listener
                 const listerSet=self.listenerMap.get(p);
                 if(listerSet){

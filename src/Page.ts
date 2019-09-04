@@ -24,12 +24,12 @@ export interface IPageSizeProperties {
 }
 
 class Page {
-    private pageId:number|string;
+    public bgImage?:string;
+    public canvas?:Canvas;
+    public pageId:number|string;
     private pageNo?:number;
-    private bgImage?:string;
     private context:Context;
     private container:HTMLDivElement;
-    private canvas?:Canvas;
     constructor(props:IPage,sizeProperty?:IPageSizeProperties){
         this.pageId=props.pageId;
         this.pageNo=props.pageNo;
